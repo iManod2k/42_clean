@@ -6,54 +6,74 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:55:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/09/27 17:18:42 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/09/27 22:15:09 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-char	**ft_split(char const *s, char c);
-size_t	find_delim(char const *s, char c);
 
-size_t	find_delim(char const *s, char c)
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	**ft_split(char const *s, char c);
+
+char **ft_split(char const *s, char c)
 {
-	size_t	total_delims;
+	char	**array_string;
 	size_t	cont;
 	size_t	cont_aux;
-	size_t	cont_delim;
+	size_t	letter;
+	size_t	word_count;
 
-	total_delims = 0;
-	cont = 0;
 	cont_aux = 0;
-	cont_delim = 0;
+	cont = 0;
+	letter = 0;
+	array_string = 0; // Crear string
+	word_count = 0;
 	while (s[cont] != '\0')
 	{
-		cont_aux = cont + 1;
-		while(s[cont_aux] != '\0' && s[cont_aux] == c)
+		free(array_string);
+		cont_aux = cont;
+		letter = 0;
+		if (s[cont] == c)
 		{
-			cont_delim++;
-			cont_aux++;
+			word_count++;
+			while (s[cont] == c)
+				cont++;
+			array_string = (char **)malloc(word_cont * sizeof(char *));
+		}else
+		{
+			while (s[cont] != c)
+			{
+				letter++;
+                                cont++;
+			}
+			array_string[]
 		}
-		if (cont_delim >= 1)
-			total_delims++;
-		cont_delim = 0;
-		cont++;
-		cont = cont_aux;
+		
 	}
-	return (total_delims);
+	return (0);
 }
 
-char	**ft_split(char const *s, char c)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	**string;
+	size_t	cont;
 
-	string = 0;
-	printf("Total delims -> %lu", find_delim(s, c));
-	return (string);
+	cont = 0;
+	if (!dest && !src)
+		return (0);
+	while (cont < n)
+	{
+		((char *)dest)[cont] = ((char *)src)[cont];
+		cont++;
+	}
+	return (dest);
 }
 
 int main(void)
 {
-	ft_split("Hola como estas bro !       ", ' ');
+	char	*string = "Hola como estas !";
+	char	letra = ' ';
+
+	ft_split(string, letra);
 	return (0);
 }
