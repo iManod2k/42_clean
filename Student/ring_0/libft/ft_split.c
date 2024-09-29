@@ -15,43 +15,64 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	**ft_split(char const *s, char c);
+size_t	separation_counter(char const *s, char c);
+
+size_t	separation_counter(char const *s, char c)
+{
+	int	breaking;
+	size_t	count;
+	
+	count = 0;
+	breaking = 0;
+	while (*s != '\0')
+	{
+		while (*s == c)
+		{
+			breaking = 1;
+			s++;
+		}
+		if (breaking)
+			count++;
+		breaking = 0;
+		s++;
+	}
+	return count;
+}
 
 char **ft_split(char const *s, char c)
 {
-	char	**array_string;
-	size_t	cont;
-	size_t	cont_aux;
-	size_t	letter;
-	size_t	word_count;
-
-	cont_aux = 0;
-	cont = 0;
-	letter = 0;
-	array_string = 0; // Crear string
-	word_count = 0;
-	while (s[cont] != '\0')
+	char 	**array_string;
+	size_t	rows;
+	size_t	rows_count;
+	size_t	cols;
+	
+	rows = separation_counter(s, c) + 1;
+	rows_count = 0;
+	array_string = (char**)malloc(rows * sizeof(char*));
+	cols = 0;
+	if (!array_string)
+			return (0);
+	while (*s != '\0' && rows_count < rows)
 	{
-		free(array_string);
-		cont_aux = cont;
-		letter = 0;
-		if (s[cont] == c)
+		while (*s == c)
+			s++;
+		while (*s != c)
 		{
-			word_count++;
-			while (s[cont] == c)
-				cont++;
-			array_string = (char **)malloc(word_cont * sizeof(char *));
-		}else
-		{
-			while (s[cont] != c)
-			{
-				letter++;
-                                cont++;
-			}
-			array_string[]
+			cols++;
+			s++;
 		}
-		
+		array_string[rows_count] = (char*)malloc(cols * sizeof(char));
+		if (!array_string[rows_count])
+			return (0);
+		ft_memcpy(array_string[rows_count], (s - cols), cols);
+		cols = 0;
+		rows_count++;
+			s++;
 	}
-	return (0);
+	//free(array_string[rows_count]);
+	array_string[rows_count] = (char*)malloc(1 * sizeof(char));
+	array_string[rows_count][0] = '\0';
+	return (array_string);
 }
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
@@ -66,14 +87,23 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		((char *)dest)[cont] = ((char *)src)[cont];
 		cont++;
 	}
+	((char *)dest)[cont] = '\0';
 	return (dest);
 }
 
 int main(void)
 {
+	//char	string[] = {'h', 'o', 'l', 'a', ' ','c', 'o', 'm', 'o', ' ','e', 's', 't', 'a', 's',' ', '!', '\0'};
 	char	*string = "Hola como estas !";
 	char	letra = ' ';
-
-	ft_split(string, letra);
+	char	**string_array = ft_split(string, letra);
+	
+	printf("%s\n", string_array[0]);
+	printf("%s\n", string_array[1]);
+	printf("%s\n", string_array[2]);
+	printf("%s\n", string_array[3]);
+	printf("%s\n", string_array[4]);
+	
+	
 	return (0);
 }
