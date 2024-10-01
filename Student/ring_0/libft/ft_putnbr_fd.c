@@ -1,7 +1,21 @@
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
-char	*ft_itoa(int n);
+void ft_putnbr_fd(int n, int fd);
+char *ft_itoa(int n);
 int	ft_sizeint_and_isnegative(int n);
+size_t	ft_strlen(char *src);
+
+size_t	ft_strlen(char *src)
+{
+	size_t	cont;
+
+	cont = 0;
+	while (src[cont] != '\0')
+		cont++;
+	return (cont);
+}
 
 int	ft_sizeint_and_isnegative(int n)
 {
@@ -41,11 +55,22 @@ char	*ft_itoa(int n)
 	}
 	return (string);
 }
+
+void ft_putnbr_fd(int n, int fd)
+{
+	char *number_str;
+	
+	number_str = ft_itoa(n);
+	write(fd, number_str, ft_strlen(number_str));
+	close(fd);
+}
 /*
-#include <stdio.h>
 int main(void)
 {
-	printf("%s", ft_itoa(-2147483647));
+	int fd;
+	
+	fd = open("../fichero.txt", O_WRONLY);
+	ft_putnbr_fd(-123, fd);
 	return (0);
 }
 */

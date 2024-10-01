@@ -37,7 +37,7 @@ char *ft_strmapi(char const *s, char (*funcion)(unsigned int, char))
 	str[cont] = '\0';
 	return (str);
 }
-
+/*
 #include <stdio.h>
 
 int main(void)
@@ -49,3 +49,4 @@ int main(void)
 	printf("%s", str2);
 	return (0);
 }
+*/
