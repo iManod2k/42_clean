@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	**ft_split(char const *s, char c);
@@ -90,20 +89,20 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	((char *)dest)[cont] = '\0';
 	return (dest);
 }
-
+/*
+#include <stdio.h>
 int main(void)
 {
-	//char	string[] = {'h', 'o', 'l', 'a', ' ','c', 'o', 'm', 'o', ' ','e', 's', 't', 'a', 's',' ', '!', '\0'};
 	char	*string = "Hola como estas !";
-	char	letra = ' ';
+	char	letra = 'a';
 	char	**string_array = ft_split(string, letra);
 	
 	printf("%s\n", string_array[0]);
 	printf("%s\n", string_array[1]);
 	printf("%s\n", string_array[2]);
 	printf("%s\n", string_array[3]);
-	printf("%s\n", string_array[4]);
 	
 	
 	return (0);
 }
+*/
