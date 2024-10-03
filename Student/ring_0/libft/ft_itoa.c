@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:29:07 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/10/03 12:30:22 by akamal-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 char	*ft_itoa(int n);
-int	ft_sizeint_and_isnegative(int n);
+int		ft_sizeint_and_isnegative(int n);
 
 int	ft_sizeint_and_isnegative(int n)
 {
 	int	cont;
-	
+
 	cont = 0;
 	if (n < 0)
 		cont = 1;
@@ -22,7 +34,7 @@ char	*ft_itoa(int n)
 {
 	size_t	str_size;
 	char	*string;
-	
+
 	str_size = ft_sizeint_and_isnegative(n) - 1;
 	string = (char *)malloc(str_size * sizeof(str_size + 1));
 	if (string == 0)

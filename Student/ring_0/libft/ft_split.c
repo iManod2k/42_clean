@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:55:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/09/27 22:15:09 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:06:28 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	**ft_split(char const *s, char c);
 size_t	separation_counter(char const *s, char c);
+static void	array_string_fill(char **array_string, size_t rows, size_t rows_count, size_t cols);
 
+static void	array_split_fill(char **array_string, size_t rows, size_t rows_count, size_t cols)
+{
+	
+}
 size_t	separation_counter(char const *s, char c)
 {
-	int	breaking;
+	int		breaking;
 	size_t	count;
-	
+
 	count = 0;
 	breaking = 0;
 	while (*s != '\0')
@@ -35,22 +40,22 @@ size_t	separation_counter(char const *s, char c)
 		breaking = 0;
 		s++;
 	}
-	return count;
+	return (count);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char 	**array_string;
+	char	**array_string;
 	size_t	rows;
 	size_t	rows_count;
 	size_t	cols;
-	
+
 	rows = separation_counter(s, c) + 1;
 	rows_count = 0;
-	array_string = (char**)malloc(rows * sizeof(char*));
+	array_string = (char **)malloc(rows * sizeof(char *));
 	cols = 0;
-	if (!array_string)
-			return (0);
+	if (array_string == 0)
+		return (0);
 	while (*s != '\0' && rows_count < rows)
 	{
 		while (*s == c)
@@ -60,16 +65,15 @@ char **ft_split(char const *s, char c)
 			cols++;
 			s++;
 		}
-		array_string[rows_count] = (char*)malloc(cols * sizeof(char));
+		array_string[rows_count] = (char *)malloc(cols * sizeof(char));
 		if (!array_string[rows_count])
 			return (0);
 		ft_memcpy(array_string[rows_count], (s - cols), cols);
 		cols = 0;
 		rows_count++;
-			s++;
+		s++;
 	}
-	//free(array_string[rows_count]);
-	array_string[rows_count] = (char*)malloc(1 * sizeof(char));
+	array_string[rows_count] = (char *)malloc(1 * sizeof(char));
 	array_string[rows_count][0] = '\0';
 	return (array_string);
 }

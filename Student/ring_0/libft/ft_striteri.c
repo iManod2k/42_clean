@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:43:06 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/10/03 12:45:21 by akamal-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*));
-void f(unsigned int c, char* str);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	f(unsigned int c, char *str);
 size_t	ft_strlen(const char *src);
 
 size_t	ft_strlen(const char *src)
@@ -14,11 +26,11 @@ size_t	ft_strlen(const char *src)
 	return (cont);
 }
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t str_len;
-	size_t cont;
-	
+	size_t	str_len;
+	size_t	cont;
+
 	cont = 0;
 	str_len = ft_strlen(s);
 	if (s != 0 && f != 0)
@@ -32,10 +44,10 @@ void ft_striteri(char *s, void (*f)(unsigned int, char*))
 	}
 }
 
-void f(unsigned int c, char* str)
+void	f(unsigned int c, char *str)
 {
-	char character;
-	
+	char	character;
+
 	character = c + 1;
 	str[0] = character;
 }

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:41:43 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/10/03 12:42:53 by akamal-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
-char *ft_strmapi(char const *s, char (*funcion)(unsigned int str, char c));
-char funcion(unsigned int str, char c);
+char	*ft_strmapi(char const *s, char (*funcion)(unsigned int str, char c));
+char	funcion(unsigned int str, char c);
 size_t	ft_strlen(const char *src);
 
 size_t	ft_strlen(const char *src)
@@ -14,16 +26,17 @@ size_t	ft_strlen(const char *src)
 	return (cont);
 }
 
-char funcion(unsigned int i, char c)
+char	funcion(unsigned int i, char c)
 {
 	return (c + i);
 }
-char *ft_strmapi(char const *s, char (*funcion)(unsigned int, char))
+
+char	*ft_strmapi(char const *s, char (*funcion)(unsigned int, char))
 {
-	size_t str_len;
-	size_t cont;
-	char *str;
-	
+	size_t	str_len;
+	size_t	cont;
+	char	*str;
+
 	cont = 0;
 	str_len = ft_strlen(s);
 	str = (char *)malloc((str_len + 1) * sizeof(char));

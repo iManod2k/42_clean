@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:47:44 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/10/03 12:48:56 by akamal-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
 
-void ft_putnbr_fd(int n, int fd);
-char *ft_itoa(int n);
-int	ft_sizeint_and_isnegative(int n);
+void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa(int n);
+int		ft_sizeint_and_isnegative(int n);
 size_t	ft_strlen(char *src);
 
 size_t	ft_strlen(char *src)
@@ -20,7 +32,7 @@ size_t	ft_strlen(char *src)
 int	ft_sizeint_and_isnegative(int n)
 {
 	int	cont;
-	
+
 	cont = 0;
 	if (n < 0)
 		cont = 1;
@@ -36,7 +48,7 @@ char	*ft_itoa(int n)
 {
 	size_t	str_size;
 	char	*string;
-	
+
 	str_size = ft_sizeint_and_isnegative(n) - 1;
 	string = (char *)malloc(str_size * sizeof(str_size + 1));
 	if (string == 0)
@@ -56,10 +68,10 @@ char	*ft_itoa(int n)
 	return (string);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char *number_str;
-	
+	char	*number_str;
+
 	number_str = ft_itoa(n);
 	write(fd, number_str, ft_strlen(number_str));
 	close(fd);
