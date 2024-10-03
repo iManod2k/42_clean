@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:13:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/09/25 15:34:16 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:24:46 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_calloc(size_t nitems, size_t size)
 	size_t	cont;
 	void	*array;
 
+	if (nitems == 0 || size == 0)
+		return (NULL);
 	cont = 0;
 	array = malloc(nitems * size);
 	while (cont < size)
@@ -63,7 +65,6 @@ int main(void)
 	frase[4] = 'e';
 
 	printf("\n%s", frase);
-
 	return (0);
 }
 */

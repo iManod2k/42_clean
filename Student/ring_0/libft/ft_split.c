@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:55:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/03 13:45:00 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:55:02 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 char		**ft_split(char const *s, char c);
+char		**free_2darray(char **string);
 size_t		separation_counter(char const *s, char c);
 static char	**array_string_fill(const char *s, char c, char **array_string,
 				size_t rows);
+
+char	**free_2darray(char **string)
+{
+	size_t	cont;
+
+	cont = 0;
+	while (string[cont])
+	{
+		free(string[cont]);
+		cont++;
+	}
+	free(string);
+	return (NULL);
+}
 
 static char	**array_string_fill(const char *s, char c, char **array_string,
 				size_t rows)
@@ -37,14 +52,14 @@ static char	**array_string_fill(const char *s, char c, char **array_string,
 		}
 		array_string[rows_count] = (char *)malloc(cols * sizeof(char));
 		if (!array_string[rows_count])
-			return (0);
+			return (free_2darray(array_string));
 		ft_memcpy(array_string[rows_count], (s - cols), cols);
 		cols = 0;
 		rows_count++;
 		s++;
 	}
-	array_string[rows_count] = (char *)malloc(3 * sizeof(char));
-	array_string[rows_count][8] = '\0';
+	array_string[rows_count] = (char *)malloc(1 * sizeof(char));
+	array_string[rows_count][0] = '\0';
 	return (array_string);
 }
 
@@ -80,7 +95,10 @@ char	**ft_split(char const *s, char c)
 	array_string = (char **)malloc(rows * sizeof(char *));
 	cols = 0;
 	if (array_string == 0)
-		return (0);
+	{
+		free(array_string);
+		return (NULL);
+	}
 	array_string = array_string_fill(s, c, array_string, rows);
 	return (array_string);
 }
@@ -91,7 +109,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	cont = 0;
 	if (!dest && !src)
-		return (0);
+		return (NULL);
 	while (cont < n)
 	{
 		((char *)dest)[cont] = ((char *)src)[cont];
