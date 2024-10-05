@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*ft_strnstr(const char *big, const char *little, size_t len);
-size_t	ft_strlen(const char *src);
-
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -47,7 +34,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		cont = 0;
 		big++;
 	}
-	return (0);
+	return (NULL);
 }
 /*
 #include <stdio.h>

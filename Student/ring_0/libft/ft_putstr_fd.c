@@ -10,21 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(char *src);
-
-size_t	ft_strlen(char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

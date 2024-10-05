@@ -9,9 +9,8 @@
 /*   Updated: 2024/09/20 15:47:27 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
 
-void	*ft_memset(void *s, int c, size_t n);
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

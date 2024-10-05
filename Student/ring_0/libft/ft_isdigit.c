@@ -9,7 +9,8 @@
 /*   Updated: 2024/09/19 14:57:22 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_isdigit(int c); //0 - NO | 1 - SI
+
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {

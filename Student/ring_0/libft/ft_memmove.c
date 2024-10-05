@@ -9,10 +9,8 @@
 /*   Updated: 2024/09/25 11:16:50 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdlib.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n);
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

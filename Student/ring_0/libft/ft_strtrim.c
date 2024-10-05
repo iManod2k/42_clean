@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set);
 char	*fill_str(size_t start, size_t end, const char *s1);
-size_t	ft_strlen(const char *src);
 
 char	*fill_str(size_t start, size_t end, const char *s1)
 {
@@ -33,25 +31,17 @@ char	*fill_str(size_t start, size_t end, const char *s1)
 	return (trimmed_str);
 }
 
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	end;
-	size_t	set_count;
+	int	start;
+	int	end;
+	int	set_count;
 
 	start = 0;
 	end = ft_strlen(s1);
 	set_count = 0;
+	if (!s1 || !set)
+		return (NULL);
 	while (set[set_count] && set_count < ft_strlen(set))
 	{
 		if (set[set_count] == s1[start])

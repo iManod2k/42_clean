@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_itoa(int n);
-int		ft_sizeint_and_isnegative(int n);
+int	ft_sizeint_and_isnegative(int n);
 
 int	ft_sizeint_and_isnegative(int n)
 {

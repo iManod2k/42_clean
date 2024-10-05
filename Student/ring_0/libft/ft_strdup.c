@@ -10,23 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "libft.h"
 
-char	*strdup(const char *s);
-size_t	ft_strlen(const char *src);
-
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
-
-char	*strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	char	*duplicate;
 	size_t	s_len;
@@ -34,12 +20,15 @@ char	*strdup(const char *s)
 
 	cont = 0;
 	s_len = ft_strlen(s);
-	duplicate = (char *)malloc(s_len * sizeof(char));
+	duplicate = (char *)malloc((s_len + 1) * sizeof(char));
+	if (duplicate == NULL)
+		return (NULL);
 	while (cont < s_len)
 	{
 		duplicate[cont] = s[cont];
 		cont++;
 	}
+	duplicate[cont] = '\0';
 	return (duplicate);
 }
 /*

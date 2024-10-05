@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlen(const char *src);
-
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

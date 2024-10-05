@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void		*ft_memcpy(void *dest, const void *src, size_t n);
-char		**ft_split(char const *s, char c);
 char		**free_2darray(char **string);
 size_t		separation_counter(char const *s, char c);
 static char	**array_string_fill(const char *s, char c, char **array_string,
@@ -58,8 +56,6 @@ static char	**array_string_fill(const char *s, char c, char **array_string,
 		rows_count++;
 		s++;
 	}
-	array_string[rows_count] = (char *)malloc(1 * sizeof(char));
-	array_string[rows_count][0] = '\0';
 	return (array_string);
 }
 
@@ -89,34 +85,17 @@ char	**ft_split(char const *s, char c)
 {
 	char	**array_string;
 	size_t	rows;
-	size_t	cols;
 
 	rows = separation_counter(s, c) + 1;
 	array_string = (char **)malloc(rows * sizeof(char *));
-	cols = 0;
 	if (array_string == 0)
-	{
-		free(array_string);
-		return (NULL);
-	}
+		return (free_2darray(array_string));
 	array_string = array_string_fill(s, c, array_string, rows);
+	array_string[rows] = (char *)malloc(1 * sizeof(char));
+	if (!array_string[rows])
+		return (free_2darray(array_string));
+	array_string[rows][0] = '\0';
 	return (array_string);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	cont;
-
-	cont = 0;
-	if (!dest && !src)
-		return (NULL);
-	while (cont < n)
-	{
-		((char *)dest)[cont] = ((char *)src)[cont];
-		cont++;
-	}
-	((char *)dest)[cont] = '\0';
-	return (dest);
 }
 /*
 #include <stdio.h>

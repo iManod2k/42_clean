@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_toupper(int c);
+#include "libft.h"
 
 int	ft_toupper(int c)
 {

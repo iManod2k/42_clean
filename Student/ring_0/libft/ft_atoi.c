@@ -10,50 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_atoi(const char *nptr);
-int	ft_pow(int num, int pow);
-
-int	ft_pow(int n, int pow)
-{
-	int	num;
-
-	num = 1;
-	if (pow <= 0)
-		return (1);
-	while (pow > 0)
-	{
-		num *= n;
-		pow--;
-	}
-	return (num);
-}
+#include "libft.h"
 
 int	ft_atoi(const char *nptr)
 {
-	int	num;
 	int	cont;
-	int	cont_aux;
-	int	diez;
+	int	sign;
+	int	num;
 
-	num = 0;
 	cont = 0;
-	cont_aux = 0;
-	diez = 1;
-	while (*nptr >= '0' && *nptr <= '9')
+	sign = 1;
+	num = 0;
+	while ((nptr[cont] >= 9 && nptr[cont] <= 13) || nptr[cont] == 32)
+		cont++;
+	while ( (nptr[cont] == '+' || nptr[cont] == '-') )
 	{
-		nptr++;
+		if (nptr[cont] == '-')
+			sign *= -1;
 		cont++;
 	}
-	nptr -= cont;
-	while (cont > 0)
+	while ( (nptr[cont] >= '0' && nptr[cont] <= '9') )
 	{
-		num += ft_pow(10, cont - 1) * (*nptr - '0');
-		cont--;
-		nptr++;
+		num = (num * 10) + nptr[cont] - '0';
+		cont++;
 	}
-	return (num);
+	return (num * sign);
 }
 /*
 #include <stdio.h>

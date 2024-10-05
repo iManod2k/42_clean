@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	ft_tolower(int c);
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

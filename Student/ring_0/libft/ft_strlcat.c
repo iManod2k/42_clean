@@ -10,35 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-size_t	ft_strlcat(char *dst, const char *src, size_t n);
-size_t	ft_strlen(char *src);
-
-size_t	ft_strlen(char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	size_t	dst_len;
-	size_t	cont;
+	size_t	index_src;
+	size_t	len_dst;
+	size_t	len_src;
 
-	cont = 0;
-	dst_len = ft_strlen(dst);
-	while ((src[cont] != '\0') && cont < n)
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen((char *)src);
+	if (dstsize <= len_dst)
+		return (dstsize + len_src);
+	index_src = 0;
+	while (src[index_src] != '\0' && dstsize > (len_dst + 1))
 	{
-		dst[dst_len + cont] = src[cont];
-		cont++;
+		dst[len_dst] = src[index_src];
+		index_src++;
+		len_dst++;
 	}
-	dst[cont + dst_len] = '\0';
-	return (cont + dst_len);
+	dst[len_dst] = '\0';
+	return (len_dst + ft_strlen((char *)(&src[index_src])));
+
 }
 /*
 #include <stdio.h>

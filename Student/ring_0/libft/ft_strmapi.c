@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int str, char c));
-size_t	ft_strlen(const char *src);
-
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
@@ -38,7 +25,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	while (cont < str_len)
 	{
-		str[cont] = f(cont, s[cont]);
+		str[cont] = (*f)(cont, s[cont]);
 		cont++;
 	}
 	str[cont] = '\0';

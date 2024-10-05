@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -20,7 +18,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	cont;
 
 	cont = 0;
-	new_substr = (char *)malloc(len * sizeof(char));
+	new_substr = (char *)malloc((len + 1) * sizeof(char));
+	if (!new_substr)
+		return (NULL);
 	while (cont < len)
 	{
 		new_substr[cont] = s[cont + start];

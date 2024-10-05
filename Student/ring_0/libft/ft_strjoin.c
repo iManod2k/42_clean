@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strjoin(char const *s1, char const *s2);
-size_t	ft_strlen(const char *src);
-
-size_t	ft_strlen(const char *src)
-{
-	size_t	cont;
-
-	cont = 0;
-	while (src[cont] != '\0')
-		cont++;
-	return (cont);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -35,9 +22,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	cont = 0;
-	new_string = (char *)malloc((s1_len + s2_len) * sizeof(char));
+	new_string = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
 	if (new_string == NULL)
-		return (0);
+		return (NULL);
 	while (s1[cont] != '\0')
 	{
 		new_string[cont] = s1[cont];
