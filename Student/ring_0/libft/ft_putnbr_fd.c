@@ -6,52 +6,31 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:47:44 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/03 12:48:56 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:20:56 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <fcntl.h>
 
-char	*ft_itoa(int n);
-int		ft_sizeint_and_isnegative(int n);
-
-int	ft_sizeint_and_isnegative(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	cont;
+	int	aux;
 
-	cont = 0;
-	if (n < 0)
-		cont = 1;
-	while (n != 0)
+	aux = n;
+	if (n == -2147483648)
 	{
-		n = n / 10;
-		cont++;
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	return (cont);
-}
-
-char	*ft_itoa(int n)
-{
-	size_t	str_size;
-	char	*string;
-
-	str_size = ft_sizeint_and_isnegative(n) - 1;
-	string = (char *)malloc(str_size * sizeof(str_size + 1));
-	if (string == 0)
-		return (0);
-	string[str_size + 1] = '\0';
-	if (n < 0)
+	if (aux < 0)
 	{
-		string[0] = '-';
-		n = n * -1;
+		ft_putchar_fd('-', fd);
+		aux = aux * -1;
 	}
-	while (n > 0)
-	{
-		string[str_size] = (n % 10) + '0';
-		str_size--;
-		n = n / 10;
-	}
-	return (string);
+	if (aux / 10 > 0)
+		ft_putnbr_fd((aux / 10), fd);
+	ft_putchar_fd((aux % 10) + '0', fd);
 }
 /*
 int main(void)
@@ -59,7 +38,8 @@ int main(void)
 	int fd;
 	
 	fd = open("../fichero.txt", O_WRONLY);
-	ft_putnbr_fd(-123, fd);
+	ft_putnbr_fd(-2147483648, fd);
+	close(fd);
 	return (0);
 }
 */
