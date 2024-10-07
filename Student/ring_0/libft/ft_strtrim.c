@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:28:17 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/09/27 16:27:07 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:43:02 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ char	*fill_str(size_t start, size_t end, const char *s1)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	start;
-	int	end;
-	int	set_count;
+	size_t	start;
+	size_t	end;
+	size_t	set_count;
 
 	start = 0;
 	end = ft_strlen(s1);

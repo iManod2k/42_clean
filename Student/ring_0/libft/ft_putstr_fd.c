@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:22 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/03 12:49:52 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:17:42 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
-	close(fd);
 }
 /*
 int main(void)

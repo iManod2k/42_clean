@@ -6,25 +6,16 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:46:12 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/03 12:47:12 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/07 18:17:30 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	cont;
-
-	cont = 0;
-	if (!dest && !src)
-		return (0);
-	while (cont < n)
-	{
-		((char *)dest)[cont] = ((char *)src)[cont];
-		cont++;
-	}
-	return (dest);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
 /*
 int main(void)
