@@ -17,7 +17,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	cont;
 
 	cont = 0;
-	while ((*s1 == *s2) && cont < n)
+	while ((*s1 == *s2) && (cont < n) && (*s1 && *s2))
 	{
 		s1++;
 		s2++;
@@ -30,8 +30,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int main(void)
 {
-	char s1[] = "asd";
-	char s2[] = "asd";
+	char s1[] = "as\nd";
+	char s2[] = "as\0d";
 	
 	printf("%i", ft_strncmp(s1, s2, 3));
 	

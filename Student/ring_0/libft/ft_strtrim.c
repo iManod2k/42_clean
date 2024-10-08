@@ -21,10 +21,9 @@ char	*fill_str(size_t start, size_t end, const char *s1)
 
 	aux = 0;
 	trimmed_str = (char *)malloc(((end - start) + 1) * sizeof(char));
-	if (trimmed_str == NULL)
+	if (!trimmed_str)
 	{
 		free(trimmed_str);
-		trimmed_str = NULL;
 		return ("");
 	}
 	while (start < end)
@@ -70,15 +69,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 int	main(void)
 {
-        char *s1 = "   \t  \n\n \t\t  \n\n\nHello \t  Please\n Trim me !\n   \n \n \t\t\n  ";
+        char *s1 = "  \t \t \n   \n\n\n\t";
         char *ret = ft_strtrim(s1, " \n\t");
 
-	printf("%s\n", s1);
-	if (ret == ((void*)0))
-		printf("bien");
-	else
-		printf("mal");
-	printf("\n%s", ret);
+	printf("%s", ret);
 	return (0);
 }
 */
