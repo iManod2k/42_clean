@@ -20,7 +20,13 @@ char	*fill_str(size_t start, size_t end, const char *s1)
 	char	*trimmed_str;
 
 	aux = 0;
-	trimmed_str = (char *)malloc((end - start) * sizeof(char));
+	trimmed_str = (char *)malloc(((end - start) + 1) * sizeof(char));
+	if (trimmed_str == NULL)
+	{
+		free(trimmed_str);
+		trimmed_str = NULL;
+		return ("");
+	}
 	while (start < end)
 	{
 		trimmed_str[aux] = s1[start];
@@ -40,9 +46,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	end = ft_strlen(s1);
 	set_count = 0;
-	if (!s1 || !set)
-		return (NULL);
-	while (set[set_count] && set_count < ft_strlen(set))
+	if (!set || !s1)
+		return ((char *)s1);
+	while (set[set_count] != '\0' && set_count < ft_strlen(set))
 	{
 		if (set[set_count] == s1[start])
 		{
@@ -64,7 +70,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 int	main(void)
 {
-	printf("%s", ft_strtrim("abaxxxzba", "abbb"));
+        char *s1 = "   \t  \n\n \t\t  \n\n\nHello \t  Please\n Trim me !\n   \n \n \t\t\n  ";
+        char *ret = ft_strtrim(s1, " \n\t");
+
+	printf("%s\n", s1);
+	if (ret == ((void*)0))
+		printf("bien");
+	else
+		printf("mal");
+	printf("\n%s", ret);
 	return (0);
 }
 */

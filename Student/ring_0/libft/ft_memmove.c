@@ -12,32 +12,28 @@
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	char	*temp;
-	size_t	cont;
+	char		*dest;
+	const char	*sr;
 
-	temp = malloc (sizeof (char) * n);
-	cont = 0;
-	while (cont < n)
+	dest = (char *)dst;
+	sr = (const char *)src;
+	if (dest > sr)
 	{
-		((char *)temp)[cont] = ((char *)src)[cont];
-		cont++;
+		while (n--)
+			dest[n] = sr[n];
 	}
-	cont = 0;
-	while (cont < n)
-	{
-		((char *)dest)[cont] = ((char *)temp)[cont];
-		cont++;
-	}
-	return (dest);
+	else if (dest < sr)
+		ft_memcpy(dest, src, n);
+	return (dst);
 }
 /*
 #include <stdio.h>
 int main(void)
 {
-	char src[5] = "12354";
-	char dest[10] = "456";
+	char src[5] = "";
+	char dest[10] = "";
 	
 	
 	printf("%s", (char*)ft_memmove(dest, src, 5));

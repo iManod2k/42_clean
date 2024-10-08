@@ -12,105 +12,73 @@
 
 #include "libft.h"
 
-char		**free_2darray(char **string);
-size_t		separation_counter(char const *s, char c);
-static char	**array_string_fill(const char *s, char c, char **array_string,
-				size_t rows);
-
-char	**free_2darray(char **string)
+size_t	count_words(char const *s, char c)
 {
-	size_t	cont;
+	size_t	word_count;
+	int		skip;
 
-	cont = 0;
-	while (string[cont])
+	word_count = 0;
+	skip = 1;
+	while (*s)
 	{
-		free(string[cont]);
-		cont++;
-	}
-	free(string);
-	return (NULL);
-}
-
-static char	**array_string_fill(const char *s, char c, char **array_string,
-				size_t rows)
-{
-	size_t	rows_count;
-	size_t	cols;
-
-	cols = 0;
-	rows_count = 0;
-	while (*s != '\0' && rows_count < rows)
-	{
-		while (*s == c)
-			s++;
-		while (*s != c)
+		if (*s != c && skip)
 		{
-			cols++;
-			s++;
-		}
-		array_string[rows_count] = (char *)malloc(cols * sizeof(char));
-		if (!array_string[rows_count])
-			return (free_2darray(array_string));
-		ft_memcpy(array_string[rows_count], (s - cols), cols);
-		cols = 0;
-		rows_count++;
+			skip = 0;
+			word_count++;
+		}else if (*s == c)													skip = 1;
 		s++;
 	}
-	return (array_string);
+	return (word_count);
 }
 
-size_t	separation_counter(char const *s, char c)
+static void	make_words(char **words, char const *s, char c, size_t n_words)
 {
-	int		breaking;
-	size_t	count;
+		char *ptr_c;
 
-	count = 0;
-	breaking = 0;
-	while (*s != '\0')
-	{
-		while (*s == c)
-		{
-			breaking = 1;
+		while (*s && *s == c)
 			s++;
+		while (n_words--)
+		{
+			ptr_c = ft_strchr(s, c);
+			if (ptr_c != NULL)
+			{
+				*words = ft_substr(s, 0, ptr_c - s);
+				while (*ptr_c && *ptr_c == c)
+					ptr_c++;
+				s = ptr_c;
+			}else
+				*words = ft_substr(s, 0, ft_strlen(s) + 1);
+			words++;
 		}
-		if (breaking)
-			count++;
-		breaking = 0;
-		s++;
-	}
-	return (count);
+		*words = NULL;
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
-	char	**array_string;
-	size_t	rows;
+	unsigned int	num_words;
+	char	**words;
 
-	rows = separation_counter(s, c) + 1;
-	array_string = (char **)malloc(rows * sizeof(char *));
-	if (array_string == 0)
-		return (free_2darray(array_string));
-	array_string = array_string_fill(s, c, array_string, rows);
-	array_string[rows] = (char *)malloc(1 * sizeof(char));
-	if (!array_string[rows])
-		return (free_2darray(array_string));
-	array_string[rows][0] = '\0';
-	return (array_string);
+	if (s == NULL)
+		return (NULL);
+	num_words = count_words(s, c);
+	words = malloc(sizeof(char **) * (num_words + 1));
+	if (words == NULL)
+		return (NULL);
+	make_words(words, s, c, num_words);
+		return (words);
 }
 /*
-#include <stdio.h>
+//#include <stdio.h>
 int main(void)
 {
-	char	*string = "Hola como estas !";
-	char	letra = 'a';
+	char	*string = "";
+	char	letra = 'x';
 	char	**string_array = ft_split(string, letra);
-	
+
 	printf("%s#\n", string_array[0]);
 	printf("%s#\n", string_array[1]);
 	printf("%s#\n", string_array[2]);
-	printf("%s#\n", string_array[3]);
-	
-	
+
 	return (0);
 }
 */

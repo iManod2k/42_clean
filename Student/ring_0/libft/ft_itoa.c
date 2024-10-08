@@ -12,51 +12,52 @@
 
 #include "libft.h"
 
-int	ft_sizeint_and_isnegative(int n);
+int	ft_sizeint(int n);
 
-int	ft_sizeint_and_isnegative(int n)
+int	ft_sizeint(int n)
 {
 	int	cont;
 
-	cont = 0;
-	if (n < 0)
-		cont = 1;
-	while (n != 0)
+	cont = 1;
+	while ((n/10) != 0)
 	{
-		n = n / 10;
 		cont++;
+		n = n / 10;
 	}
 	return (cont);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	str_size;
-	char	*string;
+	char	*str_num;
+	size_t	size_n;
+	unsigned int	num;
 
-	str_size = ft_sizeint_and_isnegative(n) - 1;
-	string = (char *)malloc(str_size * sizeof(str_size + 1));
-	if (string == 0)
-		return (0);
-	string[str_size + 1] = '\0';
+	num = n;
+	size_n = ft_sizeint(n);
 	if (n < 0)
 	{
-		string[0] = '-';
-		n = n * -1;
+		num *= -1;	
+		size_n++;
 	}
-	while (n > 0)
+	str_num = (char *)malloc((size_n + 1) * sizeof(char));
+	if (!str_num)
+		return (NULL);
+	str_num[size_n] = '\0';
+	while (size_n--)
 	{
-		string[str_size] = (n % 10) + '0';
-		str_size--;
-		n = n / 10;
+		str_num[size_n] = (num % 10) + '0';
+		num /= 10;
 	}
-	return (string);
+	if (n < 0)
+		str_num[0] = '-';
+	return (str_num);
 }
 /*
 #include <stdio.h>
 int main(void)
 {
-	printf("%s", ft_itoa(-2147483647));
+	printf("%s", ft_itoa(-123));
 	return (0);
 }
 */

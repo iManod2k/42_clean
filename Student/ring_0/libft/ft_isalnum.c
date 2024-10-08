@@ -14,18 +14,14 @@
 
 int	ft_isalnum(int c)
 {
-	if ((ft_isalpha(c) != 0) && (ft_isdigit(c) != 0))
-		return (1);
-	else
-		return (0);
+	return (ft_isdigit(c) || ft_isalpha(c));
 }
-
 /*
 #include <stdio.h>
 
 int main(void)
 {
-	printf("%i", ft_isalnum("Hola1231s"));
+	printf("%i", ft_isalnum('5'));
 	return (0);
 }
 */

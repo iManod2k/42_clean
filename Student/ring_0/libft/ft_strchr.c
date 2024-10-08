@@ -28,7 +28,7 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 	return ((char *)s);
 }
-/*
+
 #include <stdio.h>
 int main(void)
 {
@@ -39,4 +39,3 @@ int main(void)
 	
 	return (0);
 }
-*/
