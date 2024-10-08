@@ -14,27 +14,28 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
+	const char *str;
 	size_t	cont;
 
+	str = (const char *)s;
 	cont = 0;
-	while ((*(char *)s) != c && cont < n)
+	while (cont < n)
 	{
+		if ((unsigned char)str[cont] == (unsigned char)c)
+			return ((void *)(s + cont));
 		cont++;
-		s++;
 	}
-	if (cont == n)
-		return (NULL);
-	return ((char *)s);
+
+	return (NULL);
 }
+
 /*
 #include <stdio.h>
-
 int main(void)
 {
-	char s1[] = "abcdefghijklm";
+	char s1[] = "/|\100\xff\200|\\";
 	
-	printf("%s", (char *)ft_memchr(s1, 'd', 4));
+	printf("%s", (char *)ft_memchr(s1, '\200', 6));
 	
 	return (0);
-}
-*/
+}*/

@@ -17,8 +17,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 	size_t	i;
 	size_t	count;
 
-	if (!dst || !src)
-		return (0);
 	i = 0;
 	count = 0;
 	while (src[count] != '\0')

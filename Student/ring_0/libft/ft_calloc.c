@@ -16,18 +16,12 @@ void	*ft_calloc(size_t nitems, size_t size);
 
 void	*ft_calloc(size_t nitems, size_t size)
 {
-	size_t	cont;
 	void	*array;
 
-	if (nitems == 0 || size == 0)
-		return (NULL);
-	cont = 0;
 	array = malloc(nitems * size);
-	while (cont < size)
-	{
-		((int *)array)[cont] = 0;
-		cont++;
-	}
+	if (array == NULL)
+		return (NULL);
+	ft_bzero(array, nitems * size);
 	return (array);
 }
 /*
