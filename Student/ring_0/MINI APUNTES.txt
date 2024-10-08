@@ -61,3 +61,14 @@ int main()
     printf("%s", frases[1]);
     return 0;
 }
+
+
+
+///////////////////////////// FICHERO HEADER / MAKEFILE
+
+En casa, el MAKEFILE lo tengo instalado en CMD, no en MINGW64
+en el MAKEFILE...
+
+target: dependencies
+	action
+

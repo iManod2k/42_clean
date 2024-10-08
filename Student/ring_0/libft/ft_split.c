@@ -11,74 +11,80 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-size_t	count_words(char const *s, char c)
+static int	n_words(char *s, int c)
 {
-	size_t	word_count;
-	int		skip;
+	int	i;
+	int	cant_w;
 
-	word_count = 0;
-	skip = 1;
-	while (*s)
+	i = 0;
+	cant_w = 0;
+	while (s[i])
 	{
-		if (*s != c && skip)
+		while (s[i] == c)
+			i++;
+		while (s[i] != c && s[i])
 		{
-			skip = 0;
-			word_count++;
-		}else if (*s == c)													skip = 1;
-		s++;
-	}
-	return (word_count);
-}
-
-static void	make_words(char **words, char const *s, char c, size_t n_words)
-{
-		char *ptr_c;
-
-		while (*s && *s == c)
-			s++;
-		while (n_words--)
-		{
-			ptr_c = ft_strchr(s, c);
-			if (ptr_c != NULL)
-			{
-				*words = ft_substr(s, 0, ptr_c - s);
-				while (*ptr_c && *ptr_c == c)
-					ptr_c++;
-				s = ptr_c;
-			}else
-				*words = ft_substr(s, 0, ft_strlen(s) + 1);
-			words++;
+			i++;
+			if (s[i] == c || s[i] == 0)
+				cant_w++;
 		}
-		*words = NULL;
+	}
+	return (cant_w);
 }
 
-char			**ft_split(char const *s, char c)
+static void	*free_split(char **array, int max)
 {
-	unsigned int	num_words;
-	char	**words;
+	int	index;
 
-	if (s == NULL)
-		return (NULL);
-	num_words = count_words(s, c);
-	words = malloc(sizeof(char **) * (num_words + 1));
-	if (words == NULL)
-		return (NULL);
-	make_words(words, s, c, num_words);
-		return (words);
+	index = 0;
+	while (index < max)
+	{
+		free(array[index]);
+		index++;
+	}
+	free(array);
+	return (NULL);
 }
-/*
-//#include <stdio.h>
-int main(void)
+
+static char	**fill(char *s, char c, char **array)
 {
-	char	*string = "";
-	char	letra = 'x';
-	char	**string_array = ft_split(string, letra);
+	int	i;
+	int	start;
+	int	memory;
 
-	printf("%s#\n", string_array[0]);
-	printf("%s#\n", string_array[1]);
-	printf("%s#\n", string_array[2]);
-
-	return (0);
+	i = 0;
+	memory = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		start = i;
+		while (s[i] != c && s[i])
+		{
+			i++;
+			if (s[i] == c || s[i] == 0)
+			{
+				array[memory] = ft_substr(s, start, i - start);
+				if (!array[memory])
+					return (free_split(array, memory));
+				memory++;
+			}
+		}
+	}
+	return (array);
 }
-*/
+
+char	**ft_split(char const *s, char c)
+{
+	int		cant_words;
+	char	**array;
+
+	cant_words = n_words((char *)s, c);
+	array = (char **)ft_calloc((cant_words + 1) * 8, 1);
+	if (!array)
+		return (0);
+	array = fill((char *)s, c, array);
+	return (array);
+}
