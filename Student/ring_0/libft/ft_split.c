@@ -88,3 +88,4 @@ char	**ft_split(char const *s, char c)
 	array = fill((char *)s, c, array);
 	return (array);
 }
+
