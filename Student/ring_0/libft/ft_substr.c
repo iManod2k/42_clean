@@ -16,7 +16,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new_substr;
 
-
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
 	if (len > ft_strlen(s + start))
@@ -25,13 +24,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!new_substr)
 		return (NULL);
 	ft_strlcpy(new_substr, s + start, len + 1);
-
-//	while (cont < len)
-//	{
-//		new_substr[cont] = s[cont + start];
-//		cont++;
-//	}
-//	new_substr[cont] = '\0';
 	return (new_substr);
 }
 /*

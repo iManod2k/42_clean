@@ -17,7 +17,6 @@ char	*ft_strchr(const char *s, int c)
 	size_t	src_len;
 	size_t	cont;
 
-
 	src_len = ft_strlen(s);
 	cont = 0;
 	if ((unsigned char)c == '\0')
@@ -27,7 +26,6 @@ char	*ft_strchr(const char *s, int c)
 		cont++;
 		s++;
 	}
-
 	if (cont == src_len)
 		return (NULL);
 	return ((char *)s);

@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 	cont = 0;
 	if (src_len == 0 && c == '\0')
 		return ((char *)s);
-	else if(src_len == 0)
+	else if (src_len == 0)
 		return (NULL);
 	s += src_len;
 	while ((unsigned char)*s != (unsigned char)c && cont < src_len)
@@ -31,7 +31,6 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	if ((unsigned char)*s == (unsigned char)c)
 		return ((char *)s);
-
 	return (NULL);
 }
 /*

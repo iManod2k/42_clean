@@ -12,65 +12,72 @@
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c)
+static size_t	ft_numstring(const char *s, char c)
 {
-	int i;
-	int trigger;
+	size_t	count;
+	size_t	flag;
 
-	i = 0;
-	trigger = 0;
-	while (*str)
-	{
-		if (*str != c && trigger == 0)
-		{
-			trigger = 1;
-			i++;
-		}
-		else if (*str == c)
-			trigger = 0;
-		str++;
-	}
-	return (i);
-}
-
-static char	*word_dup(const char *str, int start, int finish)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
-	if (!word)
-		return("");
-	while (start < finish)
-		word[i++] = str[start++];
-	word[i] = '\0';
-	return (word);
-}
-
-char		**ft_split(char const *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	int		index;
-	char	**split;
-
-	if (!s || !(split = malloc((count_words(s, c) + 1) * sizeof(char *))))
+	count = 0;
+	flag = 0;
+	if (!s)
 		return (0);
-	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
+	while (*s != '\0')
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		if (*s == c)
+			flag = 0;
+		else if (flag == 0)
 		{
-			split[j++] = word_dup(s, index, i);
-			index = -1;
+			flag = 1;
+			count++;
 		}
+		s++;
+	}
+	return (count);
+}
+
+static size_t	ft_numchar(const char *s, char c)
+{
+	size_t	count;
+
+	count = 0;
+	while (s[count] != c && s[count] != '\0')
+		count++;
+	return (count);
+}
+
+static char	**ft_free_matrix(const char **matrix, size_t len_matrix)
+{
+	while (len_matrix--)
+		free((void *)matrix[len_matrix]);
+	free(matrix);
+	return (NULL);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**matrix;
+	size_t	len;
+	size_t	i;
+	size_t	sl;
+
+	i = 0;
+	sl = 0;
+	len = ft_numstring(s, c);
+	matrix = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!matrix)
+		return (NULL);
+	while (i < len)
+	{
+		while (*s == c)
+			s++;
+		sl = ft_numchar((const char *)s, c);
+		matrix[i] = (char *)malloc(sizeof(char) * sl + 1);
+		if (!matrix[i])
+			return (ft_free_matrix((const char **)matrix, len));
+		ft_strlcpy(matrix[i], s, sl + 1);
+		s = (ft_strchr(s, (int)c));
 		i++;
 	}
-	split[j] = 0;
-	return (split);
+	matrix[i] = 0;
+	return (matrix);
 }

@@ -19,7 +19,7 @@ int	ft_sizeint(int n)
 	int	cont;
 
 	cont = 1;
-	while ((n/10) != 0)
+	while ((n / 10) != 0)
 	{
 		cont++;
 		n = n / 10;
@@ -29,15 +29,15 @@ int	ft_sizeint(int n)
 
 char	*ft_itoa(int n)
 {
-	char	*str_num;
-	size_t	size_n;
+	char			*str_num;
+	size_t			size_n;
 	unsigned int	num;
 
 	num = n;
 	size_n = ft_sizeint(n);
 	if (n < 0)
 	{
-		num *= -1;	
+		num *= -1;
 		size_n++;
 	}
 	str_num = (char *)malloc((size_n + 1) * sizeof(char));

@@ -14,8 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const char *str;
-	size_t	cont;
+	const char	*str;
+	size_t		cont;
 
 	str = (const char *)s;
 	cont = 0;
@@ -25,7 +25,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return ((void *)(s + cont));
 		cont++;
 	}
-
 	return (NULL);
 }
 
