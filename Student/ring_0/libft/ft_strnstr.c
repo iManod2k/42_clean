@@ -14,38 +14,38 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	cont;
+	size_t	i;
+	size_t	j;
 
-	cont = 0;
-	if (little[0] == '\0')
+	if (!*little)
 		return ((char *)big);
-	while (*big != '\0')
+	i = 0;
+	while (big[i] && (size_t)i < len)
 	{
-		while (*big == *little)
+		if (big[i] == little[0])
 		{
-			if (cont == len)
-				return ((char *)big);
-			else
-				little = &little[0];
-			cont++;
-			big++;
-			little++;
+			j = 0;
+			while (big[i + j] == little[j] && i + j < len)
+			{
+				if (little[j + 1] == '\0')
+						return ((char *)&big[i]);
+				j++;
+			}
 		}
-		cont = 0;
-		big++;
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
 /*
 #include <stdio.h>
 
 int main(void)
 {
-	char s1[] = "abba";
-	char s2[] = "cddc";
-	
-	printf("%s", ft_strnstr(s1, s2, 1));
-	
-	return (0);
+char s1[] = "abba";
+char s2[] = "cddc";
+
+printf("%s", ft_strnstr(s1, s2, 1));
+
+return (0);
 }
 */

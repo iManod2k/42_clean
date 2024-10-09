@@ -19,17 +19,20 @@ char	*ft_strrchr(const char *s, int c)
 
 	src_len = ft_strlen(s);
 	cont = 0;
-	if (src_len == 0)
+	if (src_len == 0 && c == '\0')
+		return ((char *)s);
+	else if(src_len == 0)
 		return (NULL);
-	s += src_len - 1;
-	while (*s != c && cont < src_len)
+	s += src_len;
+	while ((unsigned char)*s != (unsigned char)c && cont < src_len)
 	{
 		cont++;
 		s--;
 	}
-	if (cont == src_len)
-		return (NULL);
-	return ((char *)s);
+	if ((unsigned char)*s == (unsigned char)c)
+		return ((char *)s);
+
+	return (NULL);
 }
 /*
 #include <stdio.h>

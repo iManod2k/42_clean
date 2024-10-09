@@ -14,26 +14,26 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	cont;
-	int	sign;
-	int	num;
+	char    *str;
+	int     sign;
+	int     num;
 
-	cont = 0;
+	str = (char *)nptr;
 	sign = 1;
 	num = 0;
-	while ((nptr[cont] >= 9 && nptr[cont] <= 13) || nptr[cont] == 32)
-		cont++;
-	while ((nptr[cont] == '+' || nptr[cont] == '-'))
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+
+	if (*str == '-')
 	{
-		if (nptr[cont] == '-')
-			sign *= -1;
-		cont++;
-	}
-	while ((nptr[cont] >= '0' && nptr[cont] <= '9'))
-	{
-		num = (num * 10) + nptr[cont] - '0';
-		cont++;
-	}
+		sign *= -1;
+		str++;
+	}else if(*str == '+')
+		str++;
+	if (*str < '0' || *str > '9')
+		str--;
+	while ((*str >= '0' && *str <= '9'))
+		num = (num * 10) + (*str++) - '0';
 	return (num * sign);
 }
 /*
@@ -41,11 +41,11 @@ int	ft_atoi(const char *nptr)
 
 int main(void)
 {
-	
-	int num = ft_atoi("321-123");
-	
-	printf("%i", num);
-	
-	return (0);
+
+int num = ft_atoi("321-123");
+
+printf("%i", num);
+
+return (0);
 }
 */

@@ -19,13 +19,15 @@ char	*fill_str(size_t start, size_t end, const char *s1)
 	size_t	aux;
 	char	*trimmed_str;
 
+//	if (start == ft_strlen(s1))
+//	            return ("");
 	aux = 0;
-	trimmed_str = (char *)malloc(((end - start) + 1) * sizeof(char));
+	if ((end - start) == 0)
+		trimmed_str = (char *)malloc(sizeof(char));
+	else
+		trimmed_str = (char *)malloc( ((end - start) + 1) * sizeof(char));
 	if (!trimmed_str)
-	{
-		free(trimmed_str);
-		return ("");
-	}
+		return(NULL);
 	while (start < end)
 	{
 		trimmed_str[aux] = s1[start];

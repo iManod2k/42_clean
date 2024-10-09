@@ -17,25 +17,30 @@ char	*ft_strchr(const char *s, int c)
 	size_t	src_len;
 	size_t	cont;
 
+
 	src_len = ft_strlen(s);
 	cont = 0;
-	while (*s != c && cont < src_len)
+	if ((unsigned char)c == '\0')
+		return ((char *)s + src_len);
+	while ((unsigned char)*s != (unsigned char)c && cont < src_len)
 	{
 		cont++;
 		s++;
 	}
+
 	if (cont == src_len)
 		return (NULL);
 	return ((char *)s);
 }
-
+/*
 #include <stdio.h>
 int main(void)
 {
-	char src[] = "asd Campbell";
+	char *src = "teste";
 	
-	printf("%s\n", ft_strchr(src, 'm'));
+	printf("%s\n", ft_strchr(src, '\0'));
 	printf("%s", src);
 	
 	return (0);
 }
+*/
