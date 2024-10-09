@@ -40,6 +40,8 @@ static char	*word_dup(const char *str, int start, int finish)
 
 	i = 0;
 	word = malloc((finish - start + 1) * sizeof(char));
+	if (!word)
+		return("");
 	while (start < finish)
 		word[i++] = str[start++];
 	word[i] = '\0';
