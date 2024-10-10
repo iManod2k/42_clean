@@ -64,7 +64,7 @@ char	**ft_split(const char *s, char c)
 	sl = 0;
 	len = ft_numstring(s, c);
 	matrix = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!matrix)
+	if (!matrix || !s)
 		return (NULL);
 	while (i < len)
 	{
