@@ -12,72 +12,75 @@
 
 #include "libft.h"
 
-static size_t	ft_numstring(const char *s, char c)
+static int	count_words(char const *s, char c)
 {
-	size_t	count;
-	size_t	flag;
+	int	count;
 
 	count = 0;
-	flag = 0;
-	if (!s)
-		return (0);
-	while (*s != '\0')
-	{
-		if (*s == c)
-			flag = 0;
-		else if (flag == 0)
-		{
-			flag = 1;
-			count++;
-		}
-		s++;
-	}
-	return (count);
-}
-
-static size_t	ft_numchar(const char *s, char c)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[count] != c && s[count] != '\0')
-		count++;
-	return (count);
-}
-
-static char	**ft_free_matrix(const char **matrix, size_t len_matrix)
-{
-	while (len_matrix--)
-		free((void *)matrix[len_matrix]);
-	free(matrix);
-	return (NULL);
-}
-
-char	**ft_split(const char *s, char c)
-{
-	char	**matrix;
-	size_t	len;
-	size_t	i;
-	size_t	sl;
-
-	i = 0;
-	sl = 0;
-	len = ft_numstring(s, c);
-	matrix = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!matrix || !s)
-		return (NULL);
-	while (i < len)
+	while (*s)
 	{
 		while (*s == c)
 			s++;
-		sl = ft_numchar((const char *)s, c);
-		matrix[i] = (char *)malloc(sizeof(char) * sl + 1);
-		if (!matrix[i])
-			return (ft_free_matrix((const char **)matrix, len));
-		ft_strlcpy(matrix[i], s, sl + 1);
-		s = (ft_strchr(s, (int)c));
+		if (*s)
+			count ++;
+		while (*s && *s != c)
+			s++;
+	}
+	return (count);
+}
+
+static void	*ft_free(char **ptr, int i)
+{
+	while (i > 0)
+		free(ptr[--i]);
+	free(ptr);
+	return (NULL);
+}
+
+static char	*copy_word(char const *start, char const *end)
+{
+	char	*word;
+	int	len;
+
+	len = end - start;
+	word = (char *)malloc(sizeof(char) * (len + 1));
+	if (!word)
+		return (NULL);
+	ft_strlcpy(word, start, len + 1);
+	return (word);
+}
+static char	**split_str(char const *s, char c, int nwords)
+{
+	char		**result;
+	int		i;
+	const char	*start;
+
+	i = 0;
+	result = (char **)malloc(sizeof(char *) * (nwords + 1));
+	if (!result)
+		return (NULL);
+	while (i < nwords)
+	{
+		while (*s == c)
+			s++;
+		start = s;
+		while (*s && *s != c)
+			s++;
+		result[i] = copy_word(start, s);
+		if (!result[i])
+			return (ft_free(result, i));
 		i++;
 	}
-	matrix[i] = 0;
-	return (matrix);
+	result[i] = NULL;
+	return (result);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int	nwords;
+
+	if (!s)
+		return (NULL);
+	nwords = count_words(s, c);
+	return (split_str(s, c, nwords));
 }
