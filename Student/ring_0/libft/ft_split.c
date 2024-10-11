@@ -40,7 +40,7 @@ static void	*ft_free(char **ptr, int i)
 static char	*copy_word(char const *start, char const *end)
 {
 	char	*word;
-	int	len;
+	int		len;
 
 	len = end - start;
 	word = (char *)malloc(sizeof(char) * (len + 1));
@@ -49,10 +49,11 @@ static char	*copy_word(char const *start, char const *end)
 	ft_strlcpy(word, start, len + 1);
 	return (word);
 }
+
 static char	**split_str(char const *s, char c, int nwords)
 {
 	char		**result;
-	int		i;
+	int			i;
 	const char	*start;
 
 	i = 0;
