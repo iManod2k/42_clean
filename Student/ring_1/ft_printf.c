@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 00:49:48 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/17 01:23:10 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/17 02:27:52 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		print_prcnt_type(const char c,
 					const va_list args, const int fd);
 static void		digits(const char **s_aux,
 					const va_list args, const int fd);
-static char		xtoa(size_t hex, const char letter_type);
+//static char		xtoa(size_t hex, const char letter_type);
 static void		xtoa_format(size_t hex,
 					const char letter_type, int format, const int fd);
 static void		ft_print_unsigned(unsigned int n, const int fd);
@@ -61,7 +61,7 @@ static void	digits(const char **s_aux, const va_list args, const int fd)
 	}
 	write(fd, ft_itoa(digit), ft_sizeint(digit));
 }
-
+/*
 static char	xtoa(size_t hex, const char letter_type)
 {
 	size_t	hex_aux;
@@ -78,12 +78,13 @@ static char	xtoa(size_t hex, const char letter_type)
 		return ((hex_aux - 10) + letter);
 	return ('0');
 }
-
+*/
 static void	xtoa_format(size_t hex,
 					const char letter_type, int format, const int fd)
 {
 	char	*nums;
 	size_t	hex_aux;
+	size_t	hex_aux_mod;
 
 	hex_aux = hex;
 	nums = (char *)malloc((format + 1) * sizeof(char));
@@ -95,10 +96,18 @@ static void	xtoa_format(size_t hex,
 	hex_aux = hex;
 	while (format > 0)
 	{
-		nums[--format] = xtoa((hex_aux % 16), letter_type);
+		format--;
+		hex_aux_mod = (hex_aux % 16);
+		if (hex_aux_mod > 0 && hex_aux_mod <= 9)
+			nums[format] = hex_aux_mod + '0';
+		else if (hex_aux_mod >= 10 && hex_aux_mod <= 16)
+			nums[format] = (letter_type - 23) + (hex_aux_mod - 10);
+		else
+			nums[format] = '0';
 		hex_aux /= 16;
 	}
 	write(fd, nums, ft_strlen(nums));
+	free(nums);
 }
 
 static void	print_prcnt_type(const char c, const va_list args, const int fd)
@@ -169,7 +178,7 @@ int	ft_printf(char const *frase, ...)
 	va_end(args);
 	return (0);
 }
-/*
+
 int	main(void)
 {
 	
@@ -181,13 +190,12 @@ int	main(void)
 	
 
 	
-	// size_t number = -5;
-	// (": %x - %X\n", (int)number, (int)number);
-	// ft_("ft_: %x - %X\n", (int)number, (int)number);
+	int number = -14423;
+	printf("printf: %x - %X\n", (int)number, (int)number);
+	ft_printf("ft_printf: %x - %X\n", (int)number, (int)number);
 	
-	unsigned int number = 3147483648;
-	ft_printf("ft_print: %u\n", number);
+	//unsigned int number = 3147483648;
+	//ft_printf("ft_print: %u\n", number);
 
 	return (0);
 }
-*/
