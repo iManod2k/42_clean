@@ -6,187 +6,112 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 00:49:48 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/17 19:12:07 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/18 21:55:40 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-static void		print_prcnt_type(const char c,
-					const va_list args, const int fd);
-static void		digits(const char **s_aux,
-					const va_list args, const int fd);
-static void		xtoa_format(size_t hex,
-					const char letter_type, int format, const int fd);
-static void		ft_print_unsigned(unsigned int n, const int fd);
-int				ft_sizeint(int n);
-
-static void	ft_print_unsigned(unsigned int n, const int fd)
+int	ft_printchar(int c)
 {
-	unsigned char	c;
-
-	c = 0;
-	if (n > 0)
-	{
-		c = (n % 10) + '0';
-		ft_print_unsigned((n / 10), fd);
-	}
-	write(fd, &c, 1);
+	write(1, &c, 1);
+	return (1);
 }
 
-static void	digits(const char **s_aux, const va_list args, const int fd)
+int	percentaje_type(const char type, va_list args)
 {
-	int	digit;
-	int	d_zero_count;
-	int	d_resul;
+	int		cont;
 
-	digit = 0;
-	d_zero_count = 0;
-	d_resul = 0;
-	while (ft_isdigit(**(s_aux)))
-	{
-		d_resul = (d_resul * 10) + (**s_aux - '0');
-		d_zero_count++;
-		*s_aux += 1;
-	}
-	digit = va_arg(args, int);
-	while ((d_resul - ft_sizeint(digit)) > 0)
-	{
-		write(fd, "0", 1);
-		d_resul--;
-	}
-	write(fd, ft_itoa(digit), ft_sizeint(digit));
+	cont = 0;
+	if (type == 'c')
+		cont += ft_printchar(va_arg(args, int));
+	else if (type == 's')
+		cont += ft_printstr(va_arg(args, char *));
+	else if (type == 'd')
+		cont += ft_printdigit(va_arg(args, int), 0);
+	else if (type == 'p')
+		cont += ft_printhexdir((unsigned long) va_arg(args, void *));
+	else if (type == '%')
+		cont += ft_printchar('%');
+	return (cont);
 }
 
-static void	xtoa_format(size_t hex,
-					const char letter_type, int format, const int fd)
+int	zeros_digit_dot(const char *s, va_list args)
 {
-	char	*nums;
-	int		format_aux;
-	size_t	hex_aux;
-	size_t	hex_aux_mod;
+	va_list	args_copy;
+	int		aux;
+	int		va_num;
+	int		num;
 
-	format_aux = format;
-	hex_aux = hex;
-	nums = (char *)malloc((format + 1) * sizeof(char));
-	if (!nums)
+	aux = 0;
+	num = 0;
+	s++;
+	while (ft_isdigit(*s))
+		num = (num * 10) + (*(s++) - '0');
+	aux = num;
+	if (*(s) == 'd')
 	{
-		write(fd, "", 1);
-		return ;
+		va_copy(args_copy, args);
+		va_num = va_arg(args_copy, int);
+		num -= ft_sizeint(va_num);
+		while (num-- > 0)
+			write(1, "0", 1);
+		ft_printdigit(va_num, 0);
 	}
-	hex_aux = hex;
-	while (format-- > 0)
-	{
-		hex_aux_mod = (hex_aux % 16);
-		if (hex_aux_mod > 0 && hex_aux_mod <= 9)
-			nums[format] = hex_aux_mod + '0';
-		else if (hex_aux_mod >= 10 && hex_aux_mod <= 16)
-			nums[format] = (letter_type - 23) + (hex_aux_mod - 10);
-		else
-			nums[format] = '0';
-		hex_aux /= 16;
-	}
-	write(fd, nums, format_aux);
-	free(nums);
+	else
+		return (0);
+	if (aux - ft_sizeint(va_num) > 0)
+		return ((aux - ft_sizeint(va_num)) + ft_sizeint(va_num));
+	return (ft_sizeint(va_num));
 }
 
-static void	print_prcnt_type(const char c, const va_list args, const int fd)
+char	*skip_d(int aux, const char	*frase)
 {
-	void			*aux;
-	unsigned int	ui_aux;
-	size_t			hex;
-	unsigned char	c_aux;
-
-	hex = 0;
-	if (c == '%')
-		write(fd, "%", 1);
-	else if (c == 'u')
-	{
-		ui_aux = (unsigned int)va_arg(args, unsigned int);
-		ft_print_unsigned(ui_aux, fd);
-	}
-	else if (c == 'i' || c == 'd')
-	{
-		aux = ft_itoa(va_arg(args, int));
-		write(fd, aux, ft_strlen(aux));
-		free(aux);
-	}
-	else if (c == 'c')
-	{
-		c_aux = (char)va_arg(args, int);
-		write(fd, &c_aux, 1);
-	}
-	else if (c == 's')
-	{
-		aux = va_arg(args, char *);
-		write(fd, aux, ft_strlen(aux));
-		free(aux);
-		//write(fd, va_arg(args, char *), ft_strlen(va_arg(args, char *)));
-	}
-	else if (c == 'p')
-	{
-		hex = (size_t) va_arg(args, void *);
-		write(fd, "0x", 2);
-		xtoa_format((size_t) hex, 'x', 12, fd);
-	}
-	else if (c == 'x' || c == 'X')
-		xtoa_format((size_t) va_arg(args, int), c, 8, fd);
+	if (aux > 0)
+		while (*frase != 'd')
+			frase++;
+	return ((char *) frase);
 }
 
 int	ft_printf(char const *frase, ...)
 {
-	va_list	args;
-	int		fd;
-	int		cont;
+	va_list		args;
+	int			cont;
+	int			aux;
 
-	va_start(args, frase);
-	fd = STDOUT_FILENO;
 	cont = 0;
-	if (!frase)
-		return (0);
+	aux = 0;
+	va_start(args, frase);
 	while (*frase)
 	{
 		if (*frase == '%')
 		{
-			if (*(frase + 1) == '.' && ft_isdigit(*(frase + 2)))
+			cont += percentaje_type(*(++frase), args);
+			if (*frase == '.')
 			{
-				frase += 2;
-				digits(&frase, args, fd);
-			}
-			else
-			{
-				print_prcnt_type((*(++frase)), args, fd);
-				cont++;
+				aux = zeros_digit_dot(frase, args);
+				cont += aux;
+				frase += ft_strlen(frase) - ft_strlen(skip_d(aux, frase));
 			}
 		}
 		else
-			write(fd, &*frase, 1);
+			cont += ft_printchar(*frase);
 		frase++;
 	}
 	va_end(args);
 	return (cont);
 }
-
 /*
 #include <stdio.h>
 int	main(void)
 {
-	
-	// char *frase = (char *)malloc((4 + 1)* sizeof(char));
-	// ft_strlcpy(frase, "Hola", 4);
-	// printf("%p\n", &frase);
-	// ft_printf("%p\n", &frase);
-
-	// char *frase = (char *)malloc((4 + 1)* sizeof(char));
-	// ft_strlcpy(frase, "Hola", 5);
-	// printf("%s\n", frase);
-	// ft_printf("%s\n", frase);
-	
-	// int number = -14423;
-	// printf("printf: %x - %X\n", (int)number, (int)number);
-	// ft_printf("ft_printf: %x - %X\n", (int)number, (int)number);
-	
-	ft_printf(" %c ", '0');
+	int val = 123;
+    write(1, "#", 1);
+	ft_printf(" %.5d ", val);
+    printf("\n");
+    printf("@");
+	printf(" %.5d ", val);
 
 	return (0);
 }

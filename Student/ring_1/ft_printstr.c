@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 00:47:14 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/18 16:54:58 by akamal-b         ###   ########.fr       */
+/*   Created: 2024/10/18 00:24:15 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/10/18 21:15:08 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include <stdarg.h>
-# include <limits.h>
+int	ft_printstr(const char *s)
+{
+	int		cont;
 
-int     ft_sizeint(int n);
-int		ft_printstr(const char *s);
-int		ft_printhexdir(unsigned long dir);
-int 	ft_printdigit(int num, int cont);
-int		ft_printf(char const *input, ...);
-
-#endif
+	cont = 0;
+	if (!s)
+	{
+		cont = 6;
+		write(1, "(null)", 6);
+		return (cont);
+	}
+	while (*s != '\0')
+	{
+		cont++;
+		write(1, &*s, 1);
+		s++;
+	}
+	return (cont);
+}
