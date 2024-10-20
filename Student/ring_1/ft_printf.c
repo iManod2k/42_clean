@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 00:49:48 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/18 21:55:40 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/10/20 19:06:15 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ int	percentaje_type(const char type, va_list args)
 		cont += ft_printstr(va_arg(args, char *));
 	else if (type == 'd')
 		cont += ft_printdigit(va_arg(args, int), 0);
+	else if (type == 'i')
+		cont += ft_printdigit(va_arg(args, int), 0);
+	else if (type == 'u')
+		cont += ft_printdigit_unsigned((unsigned int)
+				va_arg(args, unsigned int));
+	else if (type == 'x' || type == 'X')
+		cont += ft_printhex((unsigned int)va_arg(args, unsigned int), 1, type);
 	else if (type == 'p')
 		cont += ft_printhexdir((unsigned long) va_arg(args, void *));
 	else if (type == '%')
@@ -106,12 +113,12 @@ int	ft_printf(char const *frase, ...)
 #include <stdio.h>
 int	main(void)
 {
-	int val = 123;
+	unsigned int val = -456;
     write(1, "#", 1);
-	ft_printf(" %.5d ", val);
+	ft_printf(" %x ", val);
     printf("\n");
     printf("@");
-	printf(" %.5d ", val);
+	//printf(" %x ", (long unsigned int)val);
 
 	return (0);
 }

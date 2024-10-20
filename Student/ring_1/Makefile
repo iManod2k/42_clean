@@ -6,7 +6,7 @@
 #    By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 17:13:53 by akamal-b          #+#    #+#              #
-#    Updated: 2024/10/18 21:54:30 by akamal-b         ###   ########.fr        #
+#    Updated: 2024/10/20 14:42:03 by akamal-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFTDIR = ./libft
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c ft_printstr.c ft_printhexdir.c ft_printdigit.c ft_sizeint.c
+SRCS = ft_printf.c ft_printstr.c ft_printhexdir.c ft_printdigit.c ft_sizeint.c ft_printhex.c
 
 OBJS = $(SRCS:.c=.o)
 
