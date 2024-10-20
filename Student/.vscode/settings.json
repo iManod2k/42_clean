@@ -3,6 +3,7 @@
         "libft.h": "c",
         "limits": "c",
         "ft_printf.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "c",
+        "limits.h": "c"
     }
 }
