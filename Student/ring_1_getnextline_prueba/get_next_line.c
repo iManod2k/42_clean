@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:11:15 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/11/04 17:08:24 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:15:30 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void read_fd(int fd, char **string)
         buffer[BUFFER_SIZE] = '\0';
         if (byte > 0)
             ft_strjoin(string, buffer);
+        
+        // PRUEBA
+        if(ft_strchr(buffer, '\n') != NULL)
+        {
+            ft_bzero(buffer, BUFFER_SIZE);
+            break;
+        }
+
         ft_bzero(buffer, BUFFER_SIZE);
     }
     free(buffer);
@@ -46,6 +54,13 @@ void    ft_get_line(char **line, char **string)
     int cont = 0;
     int calc = 0;
 
+    // if ( !(*(string))[s_cont] )
+    //     return ;
+    // PRUEBA
+    if ( (size_t) s_cont > ft_strlen(*string) )
+    {
+        s_cont = 0;
+    }
     if ( !(*(string))[s_cont] )
         return ;
     
@@ -84,18 +99,19 @@ char	*get_next_line(int fd)
     static char *string = NULL;
     char *line = NULL;
     
-    if (!string)
-        read_fd(fd, &string);
+    // if (!string)
+    
+    // PRUEBA
+    read_fd(fd, &string);
     if (string == NULL)
     {
         // if (line || *line)
         //     free(line);
         return (NULL);
     }
-    if (read(fd, 0, 0))
-        printf("ERROR");
+    // if (read(fd, 0, 0))
+    //     printf("ERROR");
     
-    // printf("%s", string);
 
     ft_get_line(&line, &string);
     if (!line || *line == '\0')
@@ -110,7 +126,7 @@ char	*get_next_line(int fd)
     // free(line);
     return (line);
 }
-/*
+
 int main(void)
 {
     char *s = NULL;
@@ -118,28 +134,82 @@ int main(void)
 
     fd = open("../fichero.txt", O_RDONLY);
     
+
+
+    // char c = 0;
+    // read(fd, &c, 1);
+
+    // printf("%c", c);
+    // if (c == '1')
+    //     printf("Bien");
+
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    if (BUFFER_SIZE > 100) {
+        char *temp;
+        do {
+            temp = get_next_line(fd);
+            free(temp);
+        } while (temp != NULL);
+    }
+
     s = get_next_line(fd);
-    printf("%s", s);
+    printf("%s#", s);
     free(s);
     s = NULL;
 
+    close(fd);
+    fd = open("../fichero.txt", O_RDONLY);
+    
     s = get_next_line(fd);
-    printf("%s", s);
+    printf("#%s", s);
     free(s);
     s = NULL;
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // char c = 0;
+    // read(fd, &c, 1);
+    // printf("%c", c);
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
 
     close(fd);
     return (0);
 }
-*/
