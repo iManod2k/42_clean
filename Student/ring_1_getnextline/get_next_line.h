@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:15:27 by jdecorte          #+#    #+#             */
-/*   Updated: 2024/10/31 12:16:09 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:19:02 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+
+# include <fcntl.h>
 //--- BUFFER_SIZE ---//
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

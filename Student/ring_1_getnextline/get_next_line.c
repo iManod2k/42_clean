@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:11:15 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/10/30 00:51:31 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:19:10 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,94 @@ char	*get_next_line(int fd)
 	}
 	return (texread_final);
 }
+
+/*
+# include <stdio.h>
+
+int main(void)
+{
+    char *s = NULL;
+    int fd;
+
+    fd = open("../fichero.txt", O_RDONLY);
+    
+
+
+    // char c = 0;
+    // read(fd, &c, 1);
+
+    // printf("%c", c);
+    // if (c == '1')
+    //     printf("Bien");
+
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    if (BUFFER_SIZE > 100) {
+        char *temp;
+        do {
+            temp = get_next_line(fd);
+            free(temp);
+        } while (temp != NULL);
+    }
+
+    s = get_next_line(fd);
+    printf("%s#", s);
+    free(s);
+    s = NULL;
+
+    close(fd);
+    fd = open("../fichero.txt", O_RDONLY);
+    
+    s = get_next_line(fd);
+    printf("#%s", s);
+    free(s);
+    s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // char c = 0;
+    // read(fd, &c, 1);
+    // printf("%c", c);
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
+
+    close(fd);
+    return (0);
+}
+*/
