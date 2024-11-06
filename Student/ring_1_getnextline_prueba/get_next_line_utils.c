@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2024/11/03 01:48:46 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:40:07 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void	ft_calloc(unsigned char **p, size_t numele, size_t n)
 	size_t			total_size;
 
 	if (n != 0 && numele >= SIZE_MAX / n)
+    {
+        *p = NULL;
         return ;
+    }
 		// return (NULL);
 	total_size = numele * n;
 	*p = malloc(total_size);

@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:11:15 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/11/04 20:15:30 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:28:58 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void read_fd(int fd, char **string)
     if (!buffer)
         return ;
 
-    while (byte)
+    // while (!ft_strchr(buffer, '\n') && byte > 0)
+    while (!ft_strchr(buffer, '\n') && byte > 0)
     {
         byte = read(fd, buffer, BUFFER_SIZE);
-        if (byte == -1)
+        if (byte < 0)
         {
             if (buffer)
                 free(buffer);
@@ -32,101 +33,156 @@ void read_fd(int fd, char **string)
                 free(*string);
             return ;
         }
-        buffer[BUFFER_SIZE] = '\0';
-        if (byte > 0)
-            ft_strjoin(string, buffer);
-        
-        // PRUEBA
-        if(ft_strchr(buffer, '\n') != NULL)
-        {
-            ft_bzero(buffer, BUFFER_SIZE);
+        if (byte == 0)
             break;
-        }
+        
+        buffer[BUFFER_SIZE] = '\0';
+        ft_strjoin(string, buffer);
 
-        ft_bzero(buffer, BUFFER_SIZE);
+        if ( ft_strchr(buffer, '\n') )
+            break ;
+
+        ft_bzero(buffer, byte);
+
+        if (!*string)
+            return ;
+
+        // printf("#%d#\n", byte);
+        // printf("%s\n", buffer);
+
     }
+
     free(buffer);
 }
 
 void    ft_get_line(char **line, char **string)
 {
-    static int s_cont = 0;
-    int cont = 0;
-    int calc = 0;
-
-    // if ( !(*(string))[s_cont] )
-    //     return ;
-    // PRUEBA
-    if ( (size_t) s_cont > ft_strlen(*string) )
-    {
-        s_cont = 0;
-    }
-    if ( !(*(string))[s_cont] )
-        return ;
+    size_t cont = 0;
+    size_t max = 0;
     
-    calc = ft_strlen(*string) - ft_strlen(ft_strchr(*string + s_cont, '\n'));
-    if ((*(string))[s_cont] != '\n')
-        calc++;
+    while( (*string)[max] && (*string)[max] != '\n' )
+        max++;
+    
+    ft_calloc((unsigned char **)line, max + 2, sizeof(char));
+    
+    if ( !(*line) )
+        return ;
 
-    ft_calloc((unsigned char **)line, calc + 2, sizeof(char));
-    if ((*(string))[s_cont] == '\n')
+    if ( (*string)[max] == '\n' )
+        max++;
+        
+    while( cont < max )
     {
-        ((*line))[cont] = '\n';
+        (*line)[cont] = (*string)[cont];
         cont++;
-        // s_cont++;
     }
-    else
+
+    (*line)[cont] = '\0';
+}
+
+char *update_str(char *string)
+{
+    char *aux = NULL;
+    size_t cont = 0;
+    size_t cont_after_jump = 0;
+    size_t i_jump = 0;
+
+    if ( !(string) || !(string)[cont] )
+        return (NULL);
+
+    while ( (string)[cont] && (string)[cont] != '\n' )
+        cont++;
+    
+    if ( (string)[cont] == '\n' )
+        cont++;
+
+    cont_after_jump = cont;
+
+    while ( (string)[cont_after_jump] )
+       cont_after_jump++;
+
+    if ( (cont_after_jump - cont) <= 0 )
     {
-        while (cont < calc)
-        {
-            if (!(*(string))[s_cont])
-                return ;
-            ((*line))[cont] = (*(string))[s_cont];
-            cont++;
-            if ((*(string))[s_cont] == '\n')
-            {
-                break;
-            } 
-            s_cont++;
-        }
+        free(string);
+        return (NULL);
     }
-    ((*line))[cont] = '\0';
-    s_cont++;
+
+    ft_calloc((unsigned char **)&aux, (cont_after_jump - cont) + 1, sizeof(char));
+    // ft_calloc((unsigned char **)&aux, (ft_strlen(string) - cont) + 1, sizeof(char));
+    
+    if (!aux) {
+        free(string);
+        return (NULL);
+    }
+    
+    while ( cont < cont_after_jump )
+    {
+        aux[i_jump] = string[cont];
+        i_jump++;
+        cont++;
+    }
+
+    aux[i_jump] = '\0';
+
+    free(string);
+    string = NULL;
+    
+    return (aux);
 }
 
 char	*get_next_line(int fd)
 {
     static char *string = NULL;
     char *line = NULL;
+
+    if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
     
-    // if (!string)
     
-    // PRUEBA
     read_fd(fd, &string);
+    
     if (string == NULL)
     {
-        // if (line || *line)
-        //     free(line);
+        if (line)
+        {
+            free(line);
+            line = NULL;
+        }
         return (NULL);
     }
-    // if (read(fd, 0, 0))
-    //     printf("ERROR");
     
-
     ft_get_line(&line, &string);
-    if (!line || *line == '\0')
+
+    if (!line)
     {
-        if (string || *string)
+        if (string)
         {
             free(string);
             string = NULL;
         }
         return (NULL);
     }
-    // free(line);
+
+    string = update_str(string);
+
+    if (line && *line == '\0')
+    {
+        if (string)
+        {
+            free(string);
+            string = NULL;
+        }
+
+        if (line)
+        {
+            free(line);
+            line = NULL;
+        }
+    }
+
     return (line);
 }
-
+/*
 int main(void)
 {
     char *s = NULL;
@@ -135,45 +191,47 @@ int main(void)
     fd = open("../fichero.txt", O_RDONLY);
     
 
-
-    // char c = 0;
-    // read(fd, &c, 1);
-
-    // printf("%c", c);
-    // if (c == '1')
-    //     printf("Bien");
-
-
-    // s = get_next_line(fd);
-    // printf("%s", s);
-    // free(s);
-    // s = NULL;
-
-    // s = get_next_line(fd);
-    // printf("%s", s);
-    // free(s);
-    // s = NULL;
-
-    if (BUFFER_SIZE > 100) {
-        char *temp;
-        do {
-            temp = get_next_line(fd);
-            free(temp);
-        } while (temp != NULL);
-    }
+    s = get_next_line(fd);
+    printf("%s", s);
+    free(s);
+    s = NULL;
 
     s = get_next_line(fd);
-    printf("%s#", s);
+    printf("%s", s);
     free(s);
     s = NULL;
 
     close(fd);
     fd = open("../fichero.txt", O_RDONLY);
-    
+
     s = get_next_line(fd);
-    printf("#%s", s);
+    printf("%s", s);
     free(s);
     s = NULL;
+
+    s = get_next_line(fd);
+    printf("%s", s);
+    free(s);
+    s = NULL;
+
+    s = get_next_line(fd);
+    printf("%s", s);
+    free(s);
+    s = NULL;
+    
+    s = get_next_line(fd);
+    printf("%s", s);
+    free(s);
+    s = NULL;
+
+    s = get_next_line(fd);
+    printf("%s", s);
+    free(s);
+    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
     // s = get_next_line(fd);
     // printf("%s", s);
@@ -213,3 +271,4 @@ int main(void)
     close(fd);
     return (0);
 }
+*/
