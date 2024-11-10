@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:11:15 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/11/05 19:19:10 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:53:41 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int main(void)
     }
 
     s = get_next_line(fd);
-    printf("%s#", s);
+    printf("%s", s);
     free(s);
     s = NULL;
 
@@ -167,7 +167,7 @@ int main(void)
     fd = open("../fichero.txt", O_RDONLY);
     
     s = get_next_line(fd);
-    printf("#%s", s);
+    printf("%s", s);
     free(s);
     s = NULL;
 

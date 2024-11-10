@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 22:11:15 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/11/06 17:28:58 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:02:14 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,33 +201,34 @@ int main(void)
     free(s);
     s = NULL;
 
-    close(fd);
-    fd = open("../fichero.txt", O_RDONLY);
+    // close(fd);
+    // fd = open("../fichero.txt", O_RDONLY);
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
     
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
 
-    s = get_next_line(fd);
-    printf("%s", s);
-    free(s);
-    s = NULL;
+    // s = get_next_line(fd);
+    // printf("%s", s);
+    // free(s);
+    // s = NULL;
+
     // s = get_next_line(fd);
     // printf("%s", s);
     // free(s);
