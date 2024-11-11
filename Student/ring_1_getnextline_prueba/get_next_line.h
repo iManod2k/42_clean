@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:15:27 by jdecorte          #+#    #+#             */
-/*   Updated: 2024/11/05 19:03:44 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:28:44 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
 //-- GET NEXT LINE --//
 char	*get_next_line(int fd);
 //
@@ -31,6 +32,8 @@ void	*ft_memset(void *s, int c, size_t n);
 void	ft_calloc(unsigned char **p, size_t numele, size_t n);
 size_t	ft_strlen(char *str);
 char	*ft_strchr(char *s, int c);
-void    ft_get_line(char **line, char **string);
-void	ft_strjoin(char **s1, char *s2);
+void	ft_get_line(char **line, char **string);
+void	ft_strjoin(char **s1, char *s2, size_t i, size_t j);
+char	*freevars(char *s1, char *s2, char *s3);
+
 #endif
