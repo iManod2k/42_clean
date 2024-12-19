@@ -21,6 +21,26 @@ s_node	*find_last_node(s_node *head)
 	return (head);
 }
 
+s_node	*find_smallest_node(s_node *stack)
+{
+	long		smallest;
+	s_node	*smallest_node;
+
+	if (stack == NULL)
+		return (NULL);
+	smallest = LONG_MAX;
+	while (stack)
+	{
+		if (stack->number < smallest)
+		{
+			smallest = stack->number;
+			smallest_node = stack;
+		}
+		stack = stack->next_node;
+	}
+	return (smallest_node);
+}
+
 void	append_node (s_node **stack, int nbr)
 {
 	s_node	*node;
@@ -44,4 +64,33 @@ void	append_node (s_node **stack, int nbr)
 		last_node->next_node = node;
 		node->next_node = last_node;
 	}
+}
+
+int stack_len(s_node *stack)
+{
+	int	len;
+
+	len = 0;
+	if (stack == NULL)
+		return (0);
+	while (stack)
+	{
+			len += 1;
+			stack = stack->next_node;
+	}
+
+	return (len);
+}
+
+s_node	*return_cheapest(s_node *stack)
+{
+	if (stack == NULL)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheap)
+			return (stack);
+		stack = stack->next_node;
+	}
+	return (NULL);
 }

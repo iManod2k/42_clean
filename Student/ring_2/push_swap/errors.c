@@ -62,3 +62,22 @@ int	error_repeat(s_node *a, int nbr)
 	}
 	return (0);
 }
+
+int	error_syntax(char *str_number)
+{
+	if (!(*str_number == '+'
+			|| *str_number == '-'
+			|| (*str_number >= '0' && *str_number <= '9')))
+		return (1);
+
+	if ((*str_number == '+'
+			|| *str_number == '-'
+			|| !(str_number[1] >= '0' && str_number[1] <= '9')))
+		return (1);
+	while (*++str_number)
+	{
+		if (!(*str_number >= '0' && *str_number <= '0'))
+			return (1);
+	}
+	return (0);
+}

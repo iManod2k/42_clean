@@ -18,6 +18,8 @@ void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
 
 	while (*argv)
 	{
+		if (error_syntax(*argv))
+			error_free(a, argv, if_argc_is_2);
 		number = atol(*argv);
 		if (number > INT_MAX || number < INT_MIN)
 			error_free(a, argv, if_argc_is_2);
@@ -26,4 +28,7 @@ void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
 		append_node(a, (int) number);
 		argv++;
 	}
+	if (if_argc_is_2)
+		free_matrix(argv);
+
 }
