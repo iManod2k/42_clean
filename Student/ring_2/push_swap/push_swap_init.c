@@ -61,10 +61,32 @@ static void	set_target_node(s_node *a, s_node *b)
 	}
 }
 
+void    set_price(s_node *a, s_node *b)
+{
+    int len_a;
+    int len_b;
+
+    len_a = stack_len(a);
+    len_b = stack_len(b);
+    while (b)
+    {
+        b->push_cost = b->index;
+        if (!(b->above_median))
+            b->push_cost = len_b - (b->index);
+        if (b->target_node->above_median)
+            b->push_cost += b->target_node->index;
+        else
+            b->push_cost += len_a - (b->target_node->index);
+        b = b->next_node;
+    }
+}
+
 void	init_nodes(s_node *a, s_node *b)
 {
 	set_current_position(a);
 	set_current_position(a);
 
 	set_target_node(a, b);
+    set_price(a, b);
+    set_cheapest(b);
 }
