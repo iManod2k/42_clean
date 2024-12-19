@@ -64,7 +64,7 @@ void sort_five(s_node **a, s_node **b)
 	while (stack_len(*a) > 3)
 	{
 		init_nodes(*a, *b);
-		finish_rotation(a, find_smallest(*a), 'a');
+		finish_rotation(a, find_smallest_node(*a), 'a');
 		pb(b, a, false);
 	}
 }

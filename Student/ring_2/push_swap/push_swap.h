@@ -32,6 +32,9 @@ typedef struct s_nodes
 	struct s_nodes	*prev_node;
 } s_node;
 
+// Beggining
+void	stack_init(s_node **a, char **argv, bool if_argc_is_2);
+
 // Errors
 void	free_stack(s_node **a);
 void	free_matrix(char **argv);
@@ -39,20 +42,33 @@ void	error_free(s_node **a, char **argv, bool argc_is_2);
 int		error_repeat(s_node *a, int nbr);
 int		error_syntax(char *str_number);
 
-// Stack
-s_node	*find_last_node(s_node *head);
-void		append_node (s_node **stack, int nbr);
-int			stack_len(s_node *stack);
-s_node	*find_smallest_node(s_node *stack);
-s_node	*return_cheapest(s_node *stack);
-
-// Beggining
-void	stack_init(s_node **a, char **argv, bool if_argc_is_2);
+// Stack init & modifiers
+void	set_current_position(s_node *stack);
+void	set_price(s_node *a, s_node *b);
+void	set_cheapest(s_node *b);
+void	init_nodes(s_node *a, s_node *b);
 
 // String Functions
 char		**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 long		ft_atol(const char *nptr);
+
+// Stack
+s_node	*find_last_node(s_node *head);
+s_node	*find_smallest_node(s_node *stack);
+s_node	*return_cheapest(s_node *stack);
+void		append_node(s_node **stack, int nbr);
+int			stack_len(s_node *stack);
+
+// small Algorythms
+bool	stack_sorted(s_node *stack);
+void	sort_three(s_node **a);
+void	sort_five(s_node **a, s_node **b);
+
+// big Algorythms
+void	push_swap(s_node **a, s_node **b);
+void	finish_rotation(s_node **stack, s_node *top_node, char stack_name);
+
 
 // Operations
 void	sa(s_node	**a, bool checker);

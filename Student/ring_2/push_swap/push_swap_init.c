@@ -81,12 +81,31 @@ void    set_price(s_node *a, s_node *b)
     }
 }
 
+void	set_cheapest(s_node *b)
+{
+	long		cheapest_move;
+	s_node	*cheapest_node;
+
+	if (b == NULL)
+		return ;
+	cheapest_move = INT_MAX;
+	while (b)
+	{
+		if (b->push_cost < cheapest_move)
+		{
+			cheapest_node = b;
+			cheapest_move = b->push_cost;
+		}
+		b = b->next_node;
+	}
+	cheapest_node->cheap = true;
+}
+
 void	init_nodes(s_node *a, s_node *b)
 {
 	set_current_position(a);
-	set_current_position(a);
-
+	set_current_position(b);
 	set_target_node(a, b);
-    set_price(a, b);
-    set_cheapest(b);
+	set_price(a, b);
+	set_cheapest(b);
 }
