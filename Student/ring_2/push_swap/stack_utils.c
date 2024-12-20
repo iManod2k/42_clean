@@ -19,7 +19,6 @@ s_node	*find_last_node(s_node *head)
 	while (head->next_node)
 	{
 		head = head->next_node;
-		printf("a");
 	}
 	return (head);
 }

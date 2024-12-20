@@ -38,8 +38,7 @@ void	free_matrix(char **argv)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
-	if (!argv[i - 1])
-		free(argv[i - 1]);
+	free(argv - 1);
 }
 
 void	error_free(s_node **a, char **argv, bool argc_is_2)
@@ -77,7 +76,7 @@ int	error_syntax(char *str_number)
 		return (1);
 	while (*++str_number)
 	{
-		if (!(*str_number >= '0' && *str_number <= '0'))
+		if (!(*str_number >= '0' && *str_number <= '9'))
 			return (1);
 	}
 	return (0);

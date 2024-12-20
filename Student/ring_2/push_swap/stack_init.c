@@ -18,8 +18,8 @@ void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
 	int		i;
 
 	i = 0;
-	if (if_argc_is_2)
-		i--;
+	// if (if_argc_is_2)
+	// 	i--;
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))

@@ -49,9 +49,9 @@ static void	set_target_node(s_node *a, s_node *b)
 					&& current_a->number > b->number)
 			{
 				closest_biggest_nbr = current_a->number;
-				target_node = current_a->target_node;
+				target_node = current_a;
 			}
-			current_a = a->next_node;
+			current_a = current_a->next_node;
 		}
 		if (closest_biggest_nbr == LONG_MAX)
 			b->target_node = find_smallest_node(a);
