@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamal-b <akamal-b@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:57:03 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/17 19:57:03 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/20 23:06:19 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
 	int		i;
 
 	i = 0;
-	// if (if_argc_is_2)
-	// 	i--;
+	if (if_argc_is_2)
+		i--;
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))

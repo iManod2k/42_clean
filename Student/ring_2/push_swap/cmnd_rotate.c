@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmnd_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamal-b <akamal-b@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 13:16:20 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/18 13:16:20 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/21 00:45:38 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 static void	rotate(s_node **stack)
 {
 	s_node	*last_node;
+    int     len;
 
-	if (*stack == NULL || stack == NULL)
+    len = stack_len(*stack);
+	if (*stack == NULL || stack == NULL || len == 1)
 		return ;
 	last_node = find_last_node(*stack);
 	last_node->next_node = *stack;
 	*stack = (*stack)->next_node;
 	(*stack)->prev_node = NULL;
 	last_node->next_node->prev_node = last_node;
-	last_node->next_node->prev_node = NULL;
+	last_node->next_node->next_node = NULL;
 }
 
 void	ra(s_node **a, bool checker)

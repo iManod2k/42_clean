@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_utils.c                                       :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamal-b <akamal-b@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:28:18 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/17 20:28:18 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/20 23:27:57 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int stack_len(s_node *stack)
 {
 	int	len;
 
-	len = 0;
 	if (stack == NULL)
 		return (0);
+    len = 0;
 	while (stack)
 	{
-			len += 1;
+			++len;
 			stack = stack->next_node;
 	}
 
