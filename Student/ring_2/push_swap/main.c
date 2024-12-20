@@ -33,4 +33,5 @@ int main(int argc, char **argv)
 		else if (stack_len(a_stack) > 3)
 			push_swap(&a_stack, &b_stack);
 	}
+	free_stack(&a_stack);
 }

@@ -16,7 +16,7 @@
 #include <stdlib.h>
 # if defined(_WIN32)
 #  include <io.h>
-# elif defined(UNIX)
+# elif defined(UNIX) || defined(linux)
 #  include <unistd.h>
 # endif
 

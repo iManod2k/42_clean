@@ -15,18 +15,22 @@
 void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
 {
 	long	number;
+	int		i;
 
-	while (*argv)
+	i = 0;
+	if (if_argc_is_2)
+		i--;
+	while (argv[i])
 	{
-		if (error_syntax(*argv))
+		if (error_syntax(argv[i]))
 			error_free(a, argv, if_argc_is_2);
-		number = atol(*argv);
+		number = atol(argv[i]);
 		if (number > INT_MAX || number < INT_MIN)
 			error_free(a, argv, if_argc_is_2);
 		if (error_repeat(*a, (int) number))
 			error_free(a, argv, if_argc_is_2);
 		append_node(a, (int) number);
-		argv++;
+		++i;
 	}
 	if (if_argc_is_2)
 		free_matrix(argv);

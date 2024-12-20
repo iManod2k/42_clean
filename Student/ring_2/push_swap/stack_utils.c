@@ -17,7 +17,10 @@ s_node	*find_last_node(s_node *head)
 	if (head == NULL)
 		return (NULL);
 	while (head->next_node)
+	{
 		head = head->next_node;
+		printf("a");
+	}
 	return (head);
 }
 
@@ -62,7 +65,7 @@ void	append_node (s_node **stack, int nbr)
 	{
 		last_node = find_last_node(*stack);
 		last_node->next_node = node;
-		node->next_node = last_node;
+		node->prev_node = last_node;
 	}
 }
 
