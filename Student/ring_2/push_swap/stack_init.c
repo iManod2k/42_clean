@@ -3,36 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 19:57:03 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/20 23:06:19 by akamal-b         ###   ########.fr       */
+/*   Created: 2024/12/22 17:43:44 by akamal-b          #+#    #+#             */
+/*   Updated: 2024/12/22 18:03:55 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_init(s_node **a, char **argv, bool if_argc_is_2)
+static void	append_node (s_node **stack, int n)
 {
-	long	number;
-	int		i;
+	s_node	*node;
+	s_node	*last_node;
+
+	if (!stack)
+		return ;
+	node = malloc(sizeof(s_node));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->number = n;
+	node->cheapest = false;
+	if (!(*stack))
+	{
+		*stack = node;
+		node->prev = NULL;
+	}else
+	{
+		last_node = stack_last_node(*stack);
+		last_node->next = node;
+		node->prev = last_node;
+	}
+}
+
+void	init_stack_a(s_node **a, char **argv)
+{
+	long	n;
+	int			i;
 
 	i = 0;
-	if (if_argc_is_2)
-		i--;
 	while (argv[i])
 	{
 		if (error_syntax(argv[i]))
-			error_free(a, argv, if_argc_is_2);
-		number = atol(argv[i]);
-		if (number > INT_MAX || number < INT_MIN)
-			error_free(a, argv, if_argc_is_2);
-		if (error_repeat(*a, (int) number))
-			error_free(a, argv, if_argc_is_2);
-		append_node(a, (int) number);
-		++i;
+			free_errors(a);
+		n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			free_errors(a);
+		if (error_duplicate(*a, (int)n))
+			free_errors(a);
+		append_node(a, (int)n);
+		i++;
 	}
-	if (if_argc_is_2)
-		free_matrix(argv);
-
 }
