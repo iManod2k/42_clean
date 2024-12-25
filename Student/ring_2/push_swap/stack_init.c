@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:43:44 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 19:38:33 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 23:32:29 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	init_stack_a(s_node **a, char **argv)
 	{
 		if (error_syntax(argv[i]))
 			free_errors(a);
-		n = ft_atol(argv[i]);
+		n = atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
 		if (error_duplicate(*a, (int)n))

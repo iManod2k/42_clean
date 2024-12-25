@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:47:31 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 19:58:05 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 23:16:58 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	set_target_b(s_node *a, s_node *b)
 	}
 }
 
-void	init_nodes_b(s_node **a, s_node **b)
+void	init_nodes_b(s_node *a, s_node *b)
 {
 	set_index_and_median(a);
 	set_index_and_median(b);

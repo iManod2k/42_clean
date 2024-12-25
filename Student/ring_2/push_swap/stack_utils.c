@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:55:54 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 20:02:23 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 23:33:57 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ bool	stack_sorted(s_node *stack)
 			return (false);
 		stack = stack->next;
 	}
+	return (true);
 }
 
 s_node	*stack_last_node(s_node *stack)

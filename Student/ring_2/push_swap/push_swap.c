@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:23:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 17:17:17 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 21:12:21 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	
 	a = NULL;
 	b = NULL;
-	if (argc == 1 || argc == 2 && !argv[1][0])
+	if ((argc == 1 || argc == 2) && !argv[1][0])
 		return (1);
 	else if (argc == 2)
 		argv = split(argv[1], ' ');
@@ -33,6 +33,6 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);
 	}
-	free_stacks(&a);
+	free_stack(&a);
 	return (0);
 }

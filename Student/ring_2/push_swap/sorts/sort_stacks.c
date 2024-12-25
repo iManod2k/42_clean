@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:18:52 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 20:11:22 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 23:15:58 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	move_a_to_b(s_node **a, s_node **b)
 {
 	s_node	*cheapest_node;
 
-	cheapest_node = stack_cheapest_node(*a);
+	cheapest_node = stack_get_cheapest(*a);
 	if (cheapest_node->above_median
 			&& cheapest_node->target_node->above_median)
 			rotate_both_untilTarget(a, b, cheapest_node);

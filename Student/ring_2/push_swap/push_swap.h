@@ -6,15 +6,16 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:26:56 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 20:33:27 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 23:29:33 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>
-# include <stdlib.h>
 
 typedef struct s_stack_node
 {
@@ -27,10 +28,10 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 } s_node;
-#endif
 
 // Aux functions
 char **split(char *s, char c);
+long	atol(const char *s);
 
 // Beggining
 void		init_stack_a(s_node **a, char **argv);
@@ -45,7 +46,7 @@ void	set_cheapest(s_node *stack);
 void	init_nodes_a(s_node *a, s_node *b);
 
 // Preparation: B nodes [] -> A stack
-void	init_nodes_b(s_node **a, s_node **b);
+void	init_nodes_b(s_node *a, s_node *b);
 
 // Utils
 int			stack_len(s_node *stack);
@@ -76,3 +77,4 @@ int	error_syntax(char *str_n);
 int	error_duplicate(s_node *a, int n);
 void	free_stack(s_node **stack);
 void	free_errors(s_node **a);
+#endif
