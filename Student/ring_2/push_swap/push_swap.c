@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:23:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/22 18:06:06 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:17:17 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	main(int argc, char **argv)
 	{
 		if (stack_len(a) == 2)
 			sa(&a, false);
+		else if (stack_len(a) == 3)
+			sort_three(&a);
+		else
+			sort_stacks(&a, &b);
 	}
+	free_stacks(&a);
 	return (0);
 }

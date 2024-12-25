@@ -6,13 +6,13 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:47:51 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/22 17:49:23 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/25 20:29:31 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_syntax(char *str_n) 
+int	error_syntax(char *str_n)
 {
 	if (!(*str_n == '+'
 			|| *str_n == '-'
@@ -30,7 +30,7 @@ int	error_syntax(char *str_n)
 	return (0);
 }
 
-int	error_duplicate(s_node *a, int n) 
+int	error_duplicate(s_node *a, int n)
 {
 	if (!a) 
 		return (0);
@@ -43,7 +43,7 @@ int	error_duplicate(s_node *a, int n)
 	return (0);
 }
 
-void	free_stack(s_node **stack) 
+void	free_stack(s_node **stack)
 {
 	s_node	*tmp; 
 	s_node	*current;
@@ -61,7 +61,7 @@ void	free_stack(s_node **stack)
 	*stack = NULL;
 }
 
-void	free_errors(s_node **a) 
+void	free_errors(s_node **a)
 {
 	free_stack(a);
 	write(1, "Error\n", 6);

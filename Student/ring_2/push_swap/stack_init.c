@@ -6,11 +6,46 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:43:44 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/22 18:03:55 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/23 19:38:33 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ensure_cheap_onTop(s_node **stack,
+													s_node *top_node,
+													char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack, false);
+			else
+				rra(stack, false);
+		}else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack, false);
+			else
+				rrb(stack, false);
+		}
+	}
+}
+
+s_node	*stack_get_cheapest(s_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
 
 static void	append_node (s_node **stack, int n)
 {
