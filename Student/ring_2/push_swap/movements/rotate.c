@@ -6,15 +6,15 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:42:01 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 18:49:24 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:41:46 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rotate(s_node **stack)
+static void	rotate(t_s_node **stack)
 {
-	s_node	*last_node;
+	t_s_node	*last_node;
 
 	if (!(*stack))
 		return ;
@@ -26,24 +26,24 @@ static void	rotate(s_node **stack)
 	last_node->next->prev = last_node;
 }
 
-void	ra(s_node **a, bool print)
+void	ra(t_s_node **a, bool print)
 {
 	rotate(a);
 	if (!print)
-		write(2, "ra\n", 3);
+		write(1, "ra\n", 3);
 }
 
-void	rb(s_node **b, bool print)
+void	rb(t_s_node **b, bool print)
 {
 	rotate(b);
 	if (!print)
-		write(2, "rb\n", 3);
+		write(1, "rb\n", 3);
 }
 
-void	rr(s_node **a, s_node **b, bool print)
+void	rr(t_s_node **a, t_s_node **b, bool print)
 {
 	rotate(a);
 	rotate(b);
 	if (!print)
-		write(2, "rr\n", 3);
+		write(1, "rr\n", 3);
 }

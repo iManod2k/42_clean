@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:23:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 21:12:21 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:41:46 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	s_node	*a;
-	s_node	*b;
-	
+	t_s_node	*a;
+	t_s_node	*b;
+
 	a = NULL;
 	b = NULL;
 	if ((argc == 1 || argc == 2) && !argv[1][0])
 		return (1);
 	else if (argc == 2)
 		argv = split(argv[1], ' ');
-	init_stack_a(&a, argv+1);
+	init_stack_a(&a, argv);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)

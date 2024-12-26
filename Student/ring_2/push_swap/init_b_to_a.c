@@ -6,18 +6,18 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:47:31 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 23:16:58 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:54:38 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_target_b(s_node *a, s_node *b)
+static void	set_target_b(t_s_node *a, t_s_node *b)
 {
-	s_node	*current_a;
-	s_node	*target_node;
+	t_s_node	*current_a;
+	t_s_node	*target_node;
 	long		closest_bigger_number;
-	
+
 	while (b)
 	{
 		closest_bigger_number = LONG_MAX;
@@ -25,7 +25,7 @@ static void	set_target_b(s_node *a, s_node *b)
 		while (current_a)
 		{
 			if (current_a->number > b->number
-					&& current_a->number < closest_bigger_number)
+				&& current_a->number < closest_bigger_number)
 			{
 				closest_bigger_number = current_a->number;
 				target_node = current_a;
@@ -40,7 +40,7 @@ static void	set_target_b(s_node *a, s_node *b)
 	}
 }
 
-void	init_nodes_b(s_node *a, s_node *b)
+void	init_nodes_b(t_s_node *a, t_s_node *b)
 {
 	set_index_and_median(a);
 	set_index_and_median(b);

@@ -6,15 +6,15 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:29:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 17:15:47 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:56:52 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sort_three(s_node **a)
+void	sort_three(t_s_node **a)
 {
-	s_node	*biggest_node;
+	t_s_node	*biggest_node;
 
 	biggest_node = stack_max(*a);
 	if (biggest_node == *a)

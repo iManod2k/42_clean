@@ -6,23 +6,23 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:55:54 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 23:33:57 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:56:47 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-s_node	*stack_min(s_node *stack)
+t_s_node	*stack_min(t_s_node *stack)
 {
 	long		min;
-	s_node	*min_node;
+	t_s_node	*min_node;
 
 	if (!stack)
 		return (NULL);
 	min = LONG_MAX;
 	while (stack)
 	{
-		if (min > stack->number)
+		if (stack->number < min)
 		{
 			min_node = stack;
 			min = stack->number;
@@ -32,17 +32,17 @@ s_node	*stack_min(s_node *stack)
 	return (min_node);
 }
 
-s_node	*stack_max(s_node *stack)
+t_s_node	*stack_max(t_s_node *stack)
 {
 	long		max;
-	s_node	*max_node;
+	t_s_node	*max_node;
 
 	if (!stack)
 		return (NULL);
 	max = LONG_MIN;
 	while (stack)
 	{
-		if (max < stack->number)
+		if (stack->number > max)
 		{
 			max_node = stack;
 			max = stack->number;
@@ -52,14 +52,14 @@ s_node	*stack_max(s_node *stack)
 	return (max_node);
 }
 
-int	stack_len(s_node *stack)
+int	stack_len(t_s_node *stack)
 {
 	int	len;
 
 	if (!stack)
 		return (0);
 	len = 0;
-	while (stack->next)
+	while (stack)
 	{
 		len++;
 		stack = stack->next;
@@ -67,7 +67,7 @@ int	stack_len(s_node *stack)
 	return (len);
 }
 
-bool	stack_sorted(s_node *stack)
+bool	stack_sorted(t_s_node *stack)
 {
 	if (!stack)
 		return (true);
@@ -80,7 +80,7 @@ bool	stack_sorted(s_node *stack)
 	return (true);
 }
 
-s_node	*stack_last_node(s_node *stack)
+t_s_node	*stack_last_node(t_s_node *stack)
 {
 	if (!stack)
 		return (NULL);

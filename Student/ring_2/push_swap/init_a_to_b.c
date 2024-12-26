@@ -6,13 +6,13 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 19:45:36 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/23 19:47:15 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:55:38 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_index_and_median(s_node *stack)
+void	set_index_and_median(t_s_node *stack)
 {
 	int	i;
 	int	median;
@@ -33,20 +33,20 @@ void	set_index_and_median(s_node *stack)
 	}
 }
 
-static void	set_target_a(s_node *a, s_node *b)
+static void	set_target_a(t_s_node *a, t_s_node *b)
 {
-	s_node	*current_b;
-	s_node	*target_node;
-	long			closest_smaller_number;
+	t_s_node	*current_b;
+	t_s_node	*target_node;
+	long		closest_smaller_number;
 
 	while (a)
 	{
 		closest_smaller_number = LONG_MIN;
 		current_b = b;
-		while(current_b)
+		while (current_b)
 		{
 			if (current_b->number < a->number
-					&& current_b->number > closest_smaller_number)
+				&& current_b->number > closest_smaller_number)
 			{
 				closest_smaller_number = current_b->number;
 				target_node = current_b;
@@ -61,7 +61,7 @@ static void	set_target_a(s_node *a, s_node *b)
 	}
 }
 
-static void	cost_analysis_a(s_node *a, s_node *b)
+static void	cost_analysis_a(t_s_node *a, t_s_node *b)
 {
 	int	len_a;
 	int	len_b;
@@ -81,10 +81,10 @@ static void	cost_analysis_a(s_node *a, s_node *b)
 	}
 }
 
-void	set_cheapest(s_node *stack)
+void	set_cheapest(t_s_node *stack)
 {
 	long		cheapest_push_cost;
-	s_node	*cheapest_node;
+	t_s_node	*cheapest_node;
 
 	if (!stack)
 		return ;
@@ -101,7 +101,7 @@ void	set_cheapest(s_node *stack)
 	cheapest_node->cheapest = true;
 }
 
-void	init_nodes_a(s_node *a, s_node *b)
+void	init_nodes_a(t_s_node *a, t_s_node *b)
 {
 	set_index_and_median(a);
 	set_index_and_median(b);

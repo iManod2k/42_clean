@@ -6,14 +6,14 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:43:44 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/25 23:32:29 by akamal-b         ###   ########.fr       */
+/*   Updated: 2024/12/26 18:41:46 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ensure_cheap_onTop(s_node **stack,
-													s_node *top_node,
+void	ensure_cheap_ontop(t_s_node **stack,
+													t_s_node *top_node,
 													char stack_name)
 {
 	while (*stack != top_node)
@@ -24,7 +24,8 @@ void	ensure_cheap_onTop(s_node **stack,
 				ra(stack, false);
 			else
 				rra(stack, false);
-		}else if (stack_name == 'b')
+		}
+		else if (stack_name == 'b')
 		{
 			if (top_node->above_median)
 				rb(stack, false);
@@ -34,7 +35,7 @@ void	ensure_cheap_onTop(s_node **stack,
 	}
 }
 
-s_node	*stack_get_cheapest(s_node *stack)
+t_s_node	*stack_get_cheapest(t_s_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -47,14 +48,14 @@ s_node	*stack_get_cheapest(s_node *stack)
 	return (NULL);
 }
 
-static void	append_node (s_node **stack, int n)
+static void	append_node(t_s_node **stack, int n)
 {
-	s_node	*node;
-	s_node	*last_node;
+	t_s_node	*node;
+	t_s_node	*last_node;
 
 	if (!stack)
 		return ;
-	node = malloc(sizeof(s_node));
+	node = malloc(sizeof(t_s_node));
 	if (!node)
 		return ;
 	node->next = NULL;
@@ -64,7 +65,8 @@ static void	append_node (s_node **stack, int n)
 	{
 		*stack = node;
 		node->prev = NULL;
-	}else
+	}
+	else
 	{
 		last_node = stack_last_node(*stack);
 		last_node->next = node;
@@ -72,9 +74,9 @@ static void	append_node (s_node **stack, int n)
 	}
 }
 
-void	init_stack_a(s_node **a, char **argv)
+void	init_stack_a(t_s_node **a, char **argv)
 {
-	long	n;
+	long		n;
 	int			i;
 
 	i = 0;
