@@ -1,5 +1,5 @@
 # Archivos "basura"
 Student/.vscode/
 Student/ring_2/push_swap/.vscode/
-Student/*.o
+*.o
 Student/ring_2/push_swap_alpha/
