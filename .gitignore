@@ -2,5 +2,6 @@
 Student/.vscode/
 Student/ring_2/push_swap/.vscode/
 Student/ring_2/push_swap/*.o
+Student/ring_2/push_swap/*.out
 Student/ring_2/push_swap/**/*.o
 Student/ring_2/push_swap_alpha/
