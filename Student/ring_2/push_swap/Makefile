@@ -6,11 +6,11 @@
 #    By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/26 15:56:56 by akamal-b          #+#    #+#              #
-#    Updated: 2024/12/27 19:44:32 by akamal-b         ###   ########.fr        #
+#    Updated: 2025/01/04 18:28:18 by akamal-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap.out
+NAME	=	push_swap
 INC		= push_swap.h
 AUX		=	aux_functions/
 MOV		=	movements/
