@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+void	free_argv(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+	argv = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_s_node	*a;
@@ -25,6 +36,7 @@ int	main(int argc, char **argv)
 	{
 		argv = split(argv[1], ' ');
 		init_stack_a(&a, argv);
+		free_argv(argv);
 	}
 	else
 		init_stack_a(&a, argv + 1);
