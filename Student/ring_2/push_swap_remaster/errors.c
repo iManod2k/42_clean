@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:47:51 by akamal-b          #+#    #+#             */
-/*   Updated: 2024/12/26 18:41:46 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:09:14 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	free_stack(t_s_node **stack)
 void	free_errors(t_s_node **a)
 {
 	free_stack(a);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }

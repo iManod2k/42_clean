@@ -6,13 +6,13 @@
 /*   By: akamal-b <akamal-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 17:23:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/01/04 18:29:16 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:27:35 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_argv(char **argv)
+static void	free_argv(char **argv)
 {
 	int	i;
 
@@ -31,15 +31,14 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if ((argc == 1) || (argc == 2 && !argv[1][0]))
-		return (1);
+		return (write(2, "Error\n", 6));
 	else if (argc == 2)
 	{
 		argv = split(argv[1], ' ');
 		init_stack_a(&a, argv);
 		free_argv(argv);
 	}
-	else
-		init_stack_a(&a, argv + 1);
+	init_stack_a(&a, argv + 1);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
