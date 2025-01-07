@@ -5,11 +5,12 @@ Student/ring_2/push_swap/*.o
 Student/ring_2/push_swap/*.out
 Student/ring_2/push_swap/**/*.o
 Student/ring_2/push_swap_alpha/
-Studnet/ring_2/push_swap_remaster/tester/
-Studnet/ring_2/push_swap_remaster/0
-Studnet/ring_2/push_swap_remaster/checker_linux
-Studnet/ring_2/push_swap_remaster/push_swap_test_linux.sh
-Studnet/ring_2/push_swap_remaster/traces.txt
+
+Student/ring_2/push_swap_remaster/tester/
+Student/ring_2/push_swap_remaster/0
+Student/ring_2/push_swap_remaster/checker_linux
+Student/ring_2/push_swap_remaster/push_swap_test_linux.sh
+Student/ring_2/push_swap_remaster/traces.txt
 Student/ring_2/push_swap_remaster/.vscode/
 Student/ring_2/push_swap_remaster/*.o
 Student/ring_2/push_swap_remaster/*.out
