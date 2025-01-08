@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"ft_list.h": "c"
+		"ft_list.h": "c",
+		"stdbool.h": "c"
 	}
 }
