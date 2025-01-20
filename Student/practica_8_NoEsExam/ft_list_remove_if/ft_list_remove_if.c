@@ -16,28 +16,29 @@ int cmp (void *d1, void *d2)
 #include <unistd.h>
 void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-    t_list *previous;
-    t_list *aux;
+    t_list *previous, *previous_next, *aux;
 
     if (!begin_list || !*begin_list)
         return ;
-
+    
+    previous = (*begin_list);
+    if (previous && (*cmp)(previous->data , data_ref) == 0)
+    {
+        aux = (*begin_list)->next;
+        free((*begin_list));
+        (*begin_list) = aux;
+    }
     while ( (*begin_list) )
     {
         previous = (*begin_list);
-        (*begin_list) = (*begin_list)->next;
-        if ( (*begin_list) && (cmp((*begin_list)->data, data_ref) == 0))
+        previous_next = (*begin_list)->next;
+        if ( previous_next && (*cmp)(previous_next->data , data_ref) == 0 )
         {
-            aux = (*begin_list);
-            (*begin_list) = (*begin_list)->next;
-            free(aux);
-
-            if ( !(*begin_list) )
-            {
-                previous->next = NULL;
-                break ;
-            }
-        }
+            aux = previous_next->next;
+            free(previous_next);
+            previous->next = aux;
+        }else
+            *begin_list = (*begin_list)->next;
     }
 }
 
@@ -90,13 +91,13 @@ int main()
     printf("%p\n", ((char *)list->next->next));
     printf("%p\n", ((char *)list->next->next->next));
     printf("\n\n");
-    ft_list_remove_if_2(&list, n2, &cmp);
-    // printf("1- %p - %s\n", (list_aux), (char *)list_aux->data);
-    // printf("2- %p - %s\n", (list_aux->next), (char *)list_aux->next->data);
-    // printf("3- %p - %s\n", (list_aux->next->next), (char *)list_aux->next->next->data);
-    // printf("4- %p - %s\n", (list_aux->next->next->next), (char *)list_aux->next->next->next->data);
-    printf("1- %p\n", (list_aux));
-    printf("2- %p\n", (list_aux->next));
-    printf("3- %p\n", (list_aux->next->next));
-    printf("4- %p\n", (list_aux->next->next->next));
+    ft_list_remove_if_2(&list, n3, &cmp);
+    printf("1- %p - %s\n", (list_aux), (char *)list_aux->data);
+    printf("2- %p - %s\n", (list_aux->next), (char *)list_aux->next->data);
+    printf("3- %p - %s\n", (list_aux->next->next), (char *)list_aux->next->next->data);
+    printf("4- %p - %s\n", (list_aux->next->next->next), (char *)list_aux->next->next->next->data);
+    // printf("1- %p\n", (list_aux));
+    // printf("2- %p\n", (list_aux->next));
+    // printf("3- %p\n", (list_aux->next->next));
+    // printf("4- %p\n", (list_aux->next->next->next));
 }
