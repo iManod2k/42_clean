@@ -6,13 +6,13 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:32:19 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/01/18 19:44:00 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:55:27 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	check_char(char iji, t_game *game)
+static int	check_character(char iji, t_game *game)
 {
 	char	*char_ok;
 
@@ -39,7 +39,7 @@ static int	check_char(char iji, t_game *game)
 	return (1);
 }
 
-static int	valid_char(t_game *game)
+static int	valid_character(t_game *game)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ static int	valid_char(t_game *game)
 		j = 0;
 		while (game->map.map[i][j] != '\n')
 		{
-			if (!check_char(game->map.map[i][j], game))
+			if (!check_character(game->map.map[i][j], game))
 				return (0);
 			j++;
 		}
@@ -76,7 +76,10 @@ static int	closed_up(t_game *game)
 				game->map.map[i][game->map.line_size - 1] != '1' ||
 				game->map.map[0][j] != '1' ||
 				game->map.map[game->map.col_size - 1][j] != '1')
-				return (0);
+				{
+					ft_printf("%d - %d\n", i, j);
+					return (0);
+				}
 			j++;
 		}
 		j = 0;
@@ -119,7 +122,7 @@ int	check_map(t_game *game)
 		ft_error(game, "Please provide a closed map");
 		return (0);
 	}
-	if (!valid_char(game))
+	if (!valid_character(game))
 		return (0);
 	return (1);
 }

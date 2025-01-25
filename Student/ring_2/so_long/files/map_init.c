@@ -6,19 +6,19 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:17:23 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/01/18 16:28:21 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/01/24 20:04:57 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	update_size(t_game *game, int i, int j)
+static void	update_size(t_game *game, int x, int y)
 {
-	game->map.line_size = i - 1;
-	game->map.col_size = j - 1;
+	game->map.line_size = x - 1;
+	game->map.col_size = y - 1;
 }
 
-static void	get_coord(char *mappy, t_game *game)
+static void	get_coord(char *map_name, t_game *game)
 {
 	char	*mapper;
 	int		i;
@@ -28,12 +28,12 @@ static void	get_coord(char *mappy, t_game *game)
 	i = 0;
 	j = 0;
 	mapper = "";
-	fd = open(mappy, O_RDONLY);
+	fd = open(map_name, O_RDONLY);
 	if (fd <= 0)
 		return ;
 	else
 	{
-		while (mappy != NULL && mapper != NULL && ++j)
+		while (map_name != NULL && mapper != NULL && ++j)
 		{
 			mapper = get_next_line(fd);
 			if (mapper && !i)
@@ -45,7 +45,7 @@ static void	get_coord(char *mappy, t_game *game)
 	close(fd);
 }
 
-static char	**fill_map(char *mappy, t_game *game, char **mapping)
+static char	**fill_map(char *map_name, t_game *game, char **mapping)
 {
 	int		i;
 	int		fd;
@@ -53,12 +53,12 @@ static char	**fill_map(char *mappy, t_game *game, char **mapping)
 
 	i = 0;
 	liner = "";
-	fd = open(mappy, O_RDONLY);
+	fd = open(map_name, O_RDONLY);
 	if (fd <= 0)
 		return (0);
 	else
 	{
-		while (mappy != NULL && liner != NULL)
+		while (map_name != NULL && liner != NULL)
 		{
 			while (i <= game->map.col_size)
 			{
@@ -74,17 +74,16 @@ static char	**fill_map(char *mappy, t_game *game, char **mapping)
 	return (mapping);
 }
 
-t_game	*map_init(char *mappy, t_game *game)
+t_game	*map_init(char *map_name, t_game *game)
 {
-	get_coord(mappy, game);
+	get_coord(map_name, game);
 	if (game->map.line_size >= 3 && game->map.col_size >= 3)
 	{
-		game->map.map = malloc(sizeof(char) * (game->map.line_size + 1) * \
-			(game->map.col_size + 1) + 1);
+		game->map.map = malloc(sizeof(char) * (game->map.line_size + 1) * (game->map.col_size + 1) + 1);
 		if (!game->map.map)
 			return (0);
 		else
-			game->map.map = fill_map(mappy, game, game->map.map);
+			game->map.map = fill_map(map_name, game, game->map.map);
 	}
 	else
 		return (0);

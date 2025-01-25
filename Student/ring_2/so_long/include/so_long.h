@@ -131,7 +131,7 @@ void	mlx_destroyer(t_game *game);
 
 int		flood_it(t_game *game);
 int		init_game_structs(t_game *game);
-t_game	*map_init(char *mappy, t_game *game);
+t_game	*map_init(char *map_name, t_game *game);
 int		check_map(t_game *game);
 
 int	closing(t_game *game);

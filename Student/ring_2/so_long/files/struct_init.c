@@ -12,7 +12,7 @@ static int	init_map(t_game *game)
 	return (1);
 }
 
-static int	init_char(t_game *game)
+static int	init_character(t_game *game)
 {
 	game->player.x_char = 0;
 	game->player.y_char = 0;
@@ -57,7 +57,7 @@ int	init_game_structs(t_game *game)
 {
 	if (!init_map(game))
 		return (0);
-	if (!init_char(game))
+	if (!init_character(game))
 		return (0);
 	if (!init_tile(game))
 		return (0);

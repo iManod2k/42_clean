@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
 
-static int	check_xt(char *map)
+static int	check_ext(char *map)
 {
 	char	*name_end;
 	char	*ext;
@@ -16,24 +16,25 @@ static int	check_xt(char *map)
 	return (1);
 }
 
-t_game	*valid_map(char *mappy, t_game *game)
+t_game	*valid_map(char *map_name, t_game *game)
 {
-	if (!check_xt(mappy))
+	if (!check_ext(map_name))
 	{
 		ft_nomap(game, "Please provide a map with a valid extension");
 		return (0);
 	}
-	if (!map_init(mappy, game))
+	if (!map_init(map_name, game))
 	{
-		ft_nomap(game, "The map is a lie !\nPlease provide a map.");
+		ft_nomap(game, "Please provide a map.");
 		return (0);
 	}
 	if (!check_map(game))
 		return (0);
 	if (!flood_it(game))
 		return (0);
+
 	if (game->map.map)
 		map_destroyer(game);
-	map_init(mappy, game);
+	map_init(map_name, game);
 	return (game);
 }
