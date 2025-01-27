@@ -12,17 +12,17 @@
 
 #include "../include/so_long.h"
 
-char    *ft_strdup(char *string)
+char	*ft_strdup(char *string)
 {
-    int     i;
-    char    *str_duped;
-    
-    i = -1;
-    str_duped = malloc(ft_strlen(string) + 1);
-		if (!str_duped)
-			return (NULL);
-    while (string[++i])
-        str_duped[i] = string[i];
-    str_duped[i] = '\0';
-    return (str_duped);
+	int		i;
+	char	*str_duped;
+
+	i = -1;
+	str_duped = malloc(ft_strlen(string) + 1);
+	if (!str_duped)
+		return (NULL);
+	while (string[++i])
+		str_duped[i] = string[i];
+	str_duped[i] = '\0';
+	return (str_duped);
 }

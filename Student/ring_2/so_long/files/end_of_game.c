@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-void    game_over(void)
+void	game_over(void)
 {
-    ft_printf("Game Over !");
+	ft_printf("Game Over !");
 }

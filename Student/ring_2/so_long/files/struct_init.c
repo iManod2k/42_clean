@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/so_long.h"
 
 static int	init_map(t_game *game)
@@ -63,8 +62,6 @@ static int	init_show(t_game *game)
 	game->show.y_win = 0;
 	return (1);
 }
-
-
 
 int	init_game_structs(t_game *game)
 {

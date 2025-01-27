@@ -44,7 +44,6 @@ t_game	*valid_map(char *map_name, t_game *game)
 		return (0);
 	if (!flood_it(game))
 		return (0);
-
 	if (game->map.map)
 		map_destroyer(game);
 	map_init(map_name, game);

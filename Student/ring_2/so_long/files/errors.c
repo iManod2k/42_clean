@@ -12,11 +12,11 @@
 
 #include "../include/so_long.h"
 
-int ft_nomap(t_game *game, char *message)
+int	ft_nomap(t_game *game, char *message)
 {
-    ft_printf("Error: %s", message);
-    free(game);
-    return (0);
+	ft_printf("Error: %s", message);
+	free(game);
+	return (0);
 }
 
 int	ft_error(t_game *game, char *err_msg)

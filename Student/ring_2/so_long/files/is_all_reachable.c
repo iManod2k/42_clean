@@ -64,7 +64,6 @@ static int	caught_em_all(t_game *game, int itemy, int exity)
 	return (1);
 }
 
-
 int	flood_it(t_game *game)
 {
 	t_character	charpos;

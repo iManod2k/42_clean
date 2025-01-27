@@ -79,7 +79,8 @@ t_game	*map_init(char *map_name, t_game *game)
 	get_coord(map_name, game);
 	if (game->map.line_size >= 3 && game->map.col_size >= 3)
 	{
-		game->map.map = malloc(sizeof(char) * (game->map.line_size + 1) * (game->map.col_size + 1) + 1);
+		game->map.map = malloc(sizeof(char) * (game->map.line_size + 1) * \
+			(game->map.col_size + 1) + 1);
 		if (!game->map.map)
 			return (0);
 		else

@@ -12,25 +12,24 @@
 
 #include "../include/so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_game  *game;
+	t_game	*game;
 
-    game = malloc(sizeof(t_game));
-    if (!game)
-    {
-        ft_nomap(game, "Memory Reservation Error (malloc)");
-        game_over();
-    }
-    
-    if (argc != 2)
-    {
-        ft_nomap(game, "Execution failure: \nTry: ./your_programme_name your_map.ber");
-        game_over();
-        return (2);
-    }
-
-    if (init_game_structs(game) && valid_map(argv[1], game))
-        start_game(game);
-    return (0);
+	game = malloc(sizeof(t_game));
+	if (!game)
+	{
+		ft_nomap(game, "Memory Reservation Error (malloc)");
+		game_over();
+	}
+	if (argc != 2)
+	{
+		ft_nomap(game, \
+			"Execution failure: \nTry: ./your_programme_name your_map.ber\n");
+		game_over();
+		return (2);
+	}
+	if (init_game_structs(game) && valid_map(argv[1], game))
+		start_game(game);
+	return (0);
 }

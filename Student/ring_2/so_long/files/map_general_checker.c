@@ -76,10 +76,10 @@ static int	closed_up(t_game *game)
 				game->map.map[i][game->map.line_size - 1] != '1' ||
 				game->map.map[0][j] != '1' ||
 				game->map.map[game->map.col_size - 1][j] != '1')
-				{
-					ft_printf("%d - %d\n", i, j);
-					return (0);
-				}
+			{
+				ft_printf("%d - %d\n", i, j);
+				return (0);
+			}
 			j++;
 		}
 		j = 0;
