@@ -15,26 +15,27 @@ int	main(int ac, char **av, char **env)
     */
 
 
-    char buf[512];
-    int cont = 0;
+    // Prueba 2
+    // char buf[512];
+    // int cont = 0;
 
-    int fd[2];
-    int file = open("f1.txt", O_RDONLY);
+    // int fd[2];
+    // int file = open("f1.txt", O_RDONLY);
 
-    pipe(fd);
+    // pipe(fd);
 
-    int fork_id = fork();
+    // int fork_id = fork();
 
-    if (fork_id == 0)
-    {
-        write(1, "Hijo\n", 5);
-        exit (0);
-    }
-    else
-    {
-        wait(NULL);
-        write(1, "Padre\n", 6);
-    }
+    // if (fork_id == 0)
+    // {
+    //     write(1, "Hijo\n", 5);
+    //     exit (0);
+    // }
+    // else
+    // {
+    //     wait(NULL);
+    //     write(1, "Padre\n", 6);
+    // }
 
     // read(file, buf, 512);
     // while (buf[cont])
@@ -42,6 +43,15 @@ int	main(int ac, char **av, char **env)
     //     write(1, (&(buf[cont])), 1);
     //     cont++;
     // }
+
+    #include <string.h>
+    *env++;
+    while (*env != NULL)
+    {
+        if (strstr(*env, "PATH"))
+            printf("%s\n", *env);
+        *env++;
+    }
 
     return (0);
 }

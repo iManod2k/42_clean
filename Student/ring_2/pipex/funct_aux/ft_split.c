@@ -6,11 +6,11 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 00:01:40 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/02/01 00:01:54 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/02/01 02:30:43 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static int	count_words(char const *s, char c)
 {
@@ -31,7 +31,7 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
-void	ft_free_tab(char **tab)
+void	ft_freeSplit(char **tab)
 {
 	char	**pos;
 
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		ptr[i] = ft_str(s, c);
 		if (!(ptr[i]))
 		{
-			ft_free_tab(ptr);
+			ft_freeSplit(ptr);
 			return (NULL);
 		}
 		s += ft_strlen(ptr[i]);
