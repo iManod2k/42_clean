@@ -78,20 +78,43 @@ void    execute_command(char *command, char **arg_env)
     splitted_command = ft_split(command, ' ');
     path = get_path(splitted_command[0], arg_env);
     
-    printf("%s", path);
+    if (!path)
+    {
+        ft_freeSplit(splitted_command);
+        error();
+    }
 
-    exit (0);
+    if (execve(path, splitted_command, arg_env) == -1)
+    {
+        ft_putstr_withFd("pipex: command not found: ", 2);
+        ft_putstr_withFd(splitted_command[0], 2);
+        ft_freeSplit(splitted_command);
+        error_nocommand();
+    }
 }
 
 void    ppx_child(char **arg_env, char **arg_v, int *pipe_fd)
 {
     int fd;
 
-    ft_putstr_withFd("Child:\n", 1);
     fd = open(arg_v[1], O_RDONLY, 0777);
-    close(pipe_fd[0]);
+    if (fd < 0)
+        error();
     dup2(fd, STDIN_FILENO);
     dup2(pipe_fd[1], STDOUT_FILENO);
+    close(pipe_fd[0]);
     execute_command(arg_v[2], arg_env);
-    return ;
+}
+
+void    ppx_parent(char **arg_env, char **arg_v, int *pipe_fd)
+{
+    int fd;
+
+    fd = open(arg_v[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+    if (fd < 0)
+        error();
+    dup2(fd, STDOUT_FILENO);
+    dup2(pipe_fd[0], STDIN_FILENO);
+    close(pipe_fd[1]);
+    execute_command(arg_v[3], arg_env);
 }

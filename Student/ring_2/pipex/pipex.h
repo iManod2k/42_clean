@@ -11,12 +11,17 @@
 /*Makes me able to get PID, dup & dup2*/
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 size_t	ft_strlen(const char *s);
 void	ft_putstr_withFd(char *s, int file_desc);
 void    ppx_child(char **arg_env, char **arg_v, int *pipe_fd);
+void    ppx_parent(char **arg_env, char **arg_v, int *pipe_fd);
 char    *get_path(char *command, char **arg_env);
 char    *get_command_path(char *command, char **arg_env);
+void	error(void);
+void	error_nocommand(void);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nitems, size_t size);

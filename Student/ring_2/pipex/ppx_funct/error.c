@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_withFd.c                                 :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/26 19:44:12 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/02/03 15:27:37 by akamal-b         ###   ########.fr       */
+/*   Created: 2025/02/03 18:58:23 by akamal-b          #+#    #+#             */
+/*   Updated: 2025/02/03 19:24:43 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	ft_putstr_withFd(char *s, int file_desc)
+void	error(void)
 {
-	(void)!write(file_desc, s, ft_strlen(s));
+	ft_putstr_withFd("Error", 2);
+	exit(EXIT_FAILURE);
+}
+
+void	error_nocommand(void)
+{
+	ft_putstr_withFd("Error", 2);
+	exit(127);
 }

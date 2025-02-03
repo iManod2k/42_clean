@@ -44,14 +44,14 @@ int	main(int ac, char **av, char **env)
     //     cont++;
     // }
 
-    #include <string.h>
-    *env++;
-    while (*env != NULL)
-    {
-        if (strstr(*env, "PATH"))
-            printf("%s\n", *env);
-        *env++;
-    }
+    // #include <string.h>
+    // *env++;
+    // while (*env != NULL)
+    // {
+    //     if (strstr(*env, "PATH"))
+    //         printf("%s\n", *env);
+    //     *env++;
+    // }
 
     return (0);
 }
