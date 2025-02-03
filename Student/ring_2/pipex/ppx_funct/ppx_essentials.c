@@ -62,11 +62,11 @@ char    *get_path(char *command, char **arg_env)
         command_to_execute = ft_strjoin(whole_path_filtered, command_splitted[0]);
         free(whole_path_filtered);
         if (access(command_to_execute, F_OK | X_OK) == 0)
-            return (ft_freeSplit(command_splitted), command_to_execute);
+            return (ft_free_split(command_splitted), command_to_execute);
         free(command_to_execute);
     }
-    ft_freeSplit(whole_path_no_colon);
-    ft_freeSplit(command_splitted);
+    ft_free_split(whole_path_no_colon);
+    ft_free_split(command_splitted);
     return (command);
 }
 
@@ -80,15 +80,15 @@ void    execute_command(char *command, char **arg_env)
     
     if (!path)
     {
-        ft_freeSplit(splitted_command);
+        ft_free_split(splitted_command);
         error();
     }
 
     if (execve(path, splitted_command, arg_env) == -1)
     {
-        ft_putstr_withFd("pipex: command not found: ", 2);
-        ft_putstr_withFd(splitted_command[0], 2);
-        ft_freeSplit(splitted_command);
+        ft_putstr_with_fd("pipex: command not found: ", 2);
+        ft_putstr_with_fd(splitted_command[0], 2);
+        ft_free_split(splitted_command);
         error_nocommand();
     }
 }

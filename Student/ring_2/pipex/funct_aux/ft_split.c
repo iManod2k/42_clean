@@ -6,7 +6,7 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 00:01:40 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/02/01 02:30:43 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:10:43 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
-void	ft_freeSplit(char **tab)
+void	ft_free_split(char **tab)
 {
 	char	**pos;
 
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		ptr[i] = ft_str(s, c);
 		if (!(ptr[i]))
 		{
-			ft_freeSplit(ptr);
+			ft_free_split(ptr);
 			return (NULL);
 		}
 		s += ft_strlen(ptr[i]);

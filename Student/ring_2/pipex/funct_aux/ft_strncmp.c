@@ -6,13 +6,13 @@
 /*   By: akamal-b <akamal-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 02:41:02 by akamal-b          #+#    #+#             */
-/*   Updated: 2025/02/01 02:43:54 by akamal-b         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:11:28 by akamal-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	ft_strncmp(char *s1,char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	unsigned int	i;
 

@@ -15,7 +15,7 @@
 #include <sys/wait.h>
 
 size_t	ft_strlen(const char *s);
-void	ft_putstr_withFd(char *s, int file_desc);
+void	ft_putstr_with_fd(char *s, int file_desc);
 void    ppx_child(char **arg_env, char **arg_v, int *pipe_fd);
 void    ppx_parent(char **arg_env, char **arg_v, int *pipe_fd);
 char    *get_path(char *command, char **arg_env);
@@ -28,7 +28,7 @@ void	*ft_calloc(size_t nitems, size_t size);
 char	**ft_split(char const *s, char c);
 int	ft_strcmp(char *s1,char *s2);
 int	ft_strncmp(char *s1,char *s2, size_t n);
-void	ft_freeSplit(char **tab);
+void	ft_free_split(char **tab);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);

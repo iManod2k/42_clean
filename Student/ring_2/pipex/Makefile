@@ -2,12 +2,12 @@ NAME	=	pipex
 INC		= 	pipex.h
 
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address
 RM		=	rm -f
 
 FILES = 	funct_aux/ft_bzero.c \
 			funct_aux/ft_calloc.c \
-			funct_aux/ft_putstr_withFd.c \
+			funct_aux/ft_putstr_with_fd.c \
 			funct_aux/ft_split.c \
 			funct_aux/ft_strcmp.c \
 			funct_aux/ft_strdup.c \
