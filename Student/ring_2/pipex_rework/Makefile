@@ -2,7 +2,7 @@ NAME	=	pipex
 INC		= 	pipex.h
 
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=undefined -g
 RM		=	rm -f
 
 FILES = 	funct_aux/ft_bzero.c \
